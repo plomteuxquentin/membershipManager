@@ -1,35 +1,37 @@
 (function() {
-    'use strict';
+  'use strict';
 
-    angular
-        .module('app.layout')
-        .controller('SidebarController', SidebarController);
+  angular
+    .module('app.layout')
+    .controller('SidebarController', SidebarController);
 
-    SidebarController.$inject = ['$state', 'routerHelper'];
-    /* @ngInject */
-    function SidebarController($state, routerHelper) {
-        var vm = this;
-        var states = routerHelper.getStates();
-        vm.isCurrent = isCurrent;
+  SidebarController.$inject = ['$state', 'routerHelper'];
+  /* @ngInject */
+  function SidebarController(stateService, routerHelper) {
+    var self = this;
+    var states = routerHelper.getStates();
+    self.isCurrent = isCurrent;
 
-        activate();
+    activate();
 
-        function activate() { getNavRoutes(); }
+    function activate() { getNavRoutes(); }
 
-        function getNavRoutes() {
-            vm.navRoutes = states.filter(function(r) {
-                return r.settings && r.settings.nav;
-            }).sort(function(r1, r2) {
-                return r1.settings.nav - r2.settings.nav;
-            });
-        }
-
-        function isCurrent(route) {
-            if (!route.title || !$state.current || !$state.current.title) {
-                return '';
-            }
-            var menuName = route.title;
-            return $state.current.title.substr(0, menuName.length) === menuName ? 'current' : '';
-        }
+    function getNavRoutes() {
+      self.navRoutes = states.filter(function(r) {
+        return r.settings && r.settings.nav;
+      }).sort(function(r1, r2) {
+        return r1.settings.nav - r2.settings.nav;
+      });
     }
+
+    function isCurrent(route) {
+      var menuName;
+      if (!route.title || !stateService.current || !stateService.current.title) {
+        return '';
+      }
+
+      menuName = route.title;
+      return stateService.current.title.substr(0, menuName.length) === menuName ? 'selected' : '';
+    }
+  }
 })();
