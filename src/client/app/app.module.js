@@ -8,6 +8,8 @@
     'app.layout',
     'app.journal',
     'app.members',
+    'app.members.details',
+    'app.members.edit',
     'app.sessions'
   ]);
 })();
