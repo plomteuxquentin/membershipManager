@@ -10,6 +10,8 @@
   function MembersListController() {
     var self = this;
     self.members = [];
+    self.displayActions =  true;
+    self.displaySearch =  false;
 
     activate();
 

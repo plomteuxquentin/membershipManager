@@ -1,10 +1,21 @@
-<md-button class="md-fab" ui-sref="members.edit({id: ''})">
-  <md-icon md-svg-icon="addMember"></md-icon>
-</md-button>
+<div layout="row" ng-show="vm.displayActions">
+  <md-button class="md-fab" ui-sref="members.edit({id: ''})">
+    <md-icon md-svg-icon="addMember"></md-icon>
+  </md-button>
 
-<md-button class="md-fab">
-  <md-icon md-svg-icon="search"></md-icon>
-</md-button>
+  <md-button class="md-fab" ng-click="vm.displayActions=false">
+    <md-icon md-svg-icon="search"></md-icon>
+  </md-button>
+</div>
+
+<div layout="row" ng-hide="vm.displayActions" flex>
+  <md-input-container flex>
+    <label>Search</label>
+    <input ng-model="vm.search">
+  </md-input-container>
+</div>
+
+
 
 <md-list>
   <md-list-item
