@@ -24,7 +24,8 @@
           title: 'sessions',
           settings: {
             nav: 2,
-            icon: 'sessions'
+            icon: 'sessions',
+            target: 'sessions'
           }
         }
       }

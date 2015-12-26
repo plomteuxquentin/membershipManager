@@ -24,7 +24,8 @@
           title: 'journal',
           settings: {
             nav: 3,
-            icon: 'journal'
+            icon: 'journal',
+            target: 'journal'
           }
         }
       }

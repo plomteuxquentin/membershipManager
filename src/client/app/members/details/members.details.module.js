@@ -17,7 +17,7 @@
       {
         state: 'members.details',
         config: {
-          url: '/:id',
+          url: '/details/:id',
           templateUrl: 'app/members/details/members.details.html',
           controller: 'MembersDetailsController',
           controllerAs: 'vm',

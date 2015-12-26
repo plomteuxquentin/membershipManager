@@ -2,12 +2,12 @@
   'use strict';
 
   angular
-    .module('app.members')
-    .controller('MembersController', MembersController);
+    .module('app.members.list')
+    .controller('MembersListController', MembersListController);
 
-  MembersController.$inject = [];
+  MembersListController.$inject = [];
   /* @ngInject */
-  function MembersController() {
+  function MembersListController() {
     var self = this;
     self.members = [];
 
