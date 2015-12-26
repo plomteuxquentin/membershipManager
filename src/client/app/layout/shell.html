@@ -8,8 +8,6 @@
       <h1>Menu</h1>
     </md-toolbar>
 
-
-
     <md-list ng-controller="SidebarController as vm">
       <md-list-item ng-class="vm.isCurrent(route)" ng-repeat="route in vm.navRoutes">
         <md-button ui-sref="{{route.name}}">
@@ -18,23 +16,8 @@
         </md-button>
         <md-divider></md-divider>
       </md-list-item>
-
-      <md-list-item>
-        <md-button>
-          <md-icon md-svg-icon="sessions" class="side-bar__menu__item__icon"></md-icon>
-          Sessions
-        </md-button>
-        <md-divider></md-divider>
-      </md-list-item>
-      <md-list-item>
-        <md-button>
-          <md-icon md-svg-icon="journal" class="side-bar__menu__item__icon"></md-icon>
-          Journal
-        </md-button>
-      </md-list-item>
     </md-list>
   </md-sidenav>
-
 
   <div  ng-controller="ShellController as vm" flex layout="column" tabIndex="-1" role="main" class="md-whiteframe-z2">
     <md-toolbar layout="row" class="md-whiteframe-z1">

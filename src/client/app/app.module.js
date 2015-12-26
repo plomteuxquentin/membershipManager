@@ -6,6 +6,8 @@
     'app.core',
     'app.widgets',
     'app.layout',
-    'app.members'
+    'app.journal',
+    'app.members',
+    'app.sessions'
   ]);
 })();
