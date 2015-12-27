@@ -1,4 +1,8 @@
+@color_primary: #607D8B;
+@color_primary_dark: #455A64;
+@color_primary_light: #CFD8DC;
 @color_accent: #ff4081;
+
 
 html, body {
   font-family: 'Roboto', sans-serif;
@@ -6,16 +10,6 @@ html, body {
   height:100%;
   margin: 0px;
   padding: 0px;
-}
-
-/* Toolbar area */
-
-.menu {
-  background-color: transparent;
-  border: none;
-  height: 38px;
-  margin: 16px;
-  width: 36px;
 }
 
 md-toolbar h1 {
@@ -31,10 +25,6 @@ md-list .md-button {
   width: 100%;
 }
 
-md-list .md-button.selected {
-  color: @color_accent;
-}
-
 md-sidenav  md-list {
     padding: 0px 0px 8px 0px;
   }
@@ -47,34 +37,22 @@ md-sidenav  md-list {
 }
 
 #content  {
-  padding-left: 40px;
-  padding-right: 40px;
+  padding-left: 1*8px;
+  padding-right: 1*8px;
   padding-top: 5px;
 }
 
-#content .md-button.contact {
-  background-color: transparent;
-  border: none;
-  width: 48px;
-  height: 48px;
-  margin: 8px auto 16px 0;
-  position: absolute;
-  top: 10px;
-  right: 40px;
-}
 
 #content md-icon.avatar {
   margin-top: 10px;
 }
 
-#content .md-button.contact > md-icon {
-  fill:black;
+#content .md-button > md-icon {
   width:36px;
   height:36px;
 }
 
 md-button.menuBtn > md-icon {
-  fill:white;
   width:24px;
   height:24px;
 }
@@ -115,15 +93,12 @@ md-toolbar h1 {
   -moz-transform:scale(0.70);
 }
 
-
 md-bottom-sheet  md-icon {
   margin-right:20px;
 }
 
-span.name {
-  font-weight: bold;
-  font-size:1.1em;
-  padding-left:5px;
+.side-bar__menu__item {
+  color:@color_primary;
 }
 
 .side-bar__menu__item__icon {
@@ -138,8 +113,31 @@ span.name {
   transform: translateZ(0);
   -webkit-transform: scale(0.70);
   -moz-transform:scale(0.70);
+  svg {
+    fill:@color_primary;
+  }
 }
 
 .selected {
   color: @color_accent;
+  md-icon svg {
+      fill: @color_accent;
+  }
+}
+
+.search__input-contrainer__icon{
+  cursor: pointer;
+}
+
+
+.member-list__icon {
+ svg {
+    fill: @color_primary;
+  }
+}
+
+.member-list__icon:hover {
+  svg {
+    fill: @color_accent;
+  }
 }

@@ -10,8 +10,9 @@
   function MembersListController() {
     var self = this;
     self.members = [];
-    self.displayActions =  true;
-    self.displaySearch =  false;
+    self.search = "";
+    self.displayActions = true;
+    self.removeOnBackspace = removeOnBackspace;
 
     activate();
 
@@ -36,6 +37,13 @@
           group: 'Close-combat'
         }
       ];
+    }
+
+    function removeOnBackspace (event) {
+      if (event.keyCode === 8 && self.search.length === 0) {
+        self.displayActions = true;
+        event.preventDefault();
+      }
     }
   }
 })();

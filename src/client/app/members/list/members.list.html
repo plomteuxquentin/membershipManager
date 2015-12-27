@@ -1,33 +1,34 @@
-<div layout="row" ng-show="vm.displayActions">
-  <md-button class="md-fab" ui-sref="members.edit({id: ''})">
-    <md-icon md-svg-icon="addMember"></md-icon>
-  </md-button>
+<div class="action-bar" flex layout="row" layout-align="end center">
+  <div layout="row" ng-show="vm.displayActions">
+    <md-button class="md-fab" ui-sref="members.edit({id: ''})">
+      <md-icon md-svg-icon="addMember"></md-icon>
+    </md-button>
 
-  <md-button class="md-fab" ng-click="vm.displayActions=false">
-    <md-icon md-svg-icon="search"></md-icon>
-  </md-button>
+    <md-button class="md-fab" ng-click="vm.displayActions=false">
+      <md-icon md-svg-icon="search"></md-icon>
+    </md-button>
+  </div>
 </div>
 
-<div layout="row" ng-hide="vm.displayActions" flex>
+<div layout="row" ng-if="!vm.displayActions" flex>
   <md-input-container flex>
+    <md-icon class="search__input-contrainer__icon" md-svg-icon="clear" ng-click="vm.displayActions=true"></md-icon>
     <label>Search</label>
-    <input ng-model="vm.search">
+    <input ng-model="vm.search" auto-focus ng-keydown="vm.removeOnBackspace($event)">
   </md-input-container>
 </div>
 
-
-
 <md-list>
   <md-list-item
-      ng-repeat="member in vm.members"
+      ng-repeat="member in vm.members| filter:{$:vm.search}"
       ui-sref="members.details({id: member.id})">
     <img alt="{{member.name}}" ng-src="{{member.icon}}" class="md-avatar" />
-    <p>{{member.name}}</p>
+    <p class="member-list__name">{{member.name}}</p>
     <p>{{member.group}}</p>
     <div hide-xs flex layout="row" layout-align="space-around center">
-      <md-icon md-svg-icon="mail"></md-icon>
-      <md-icon md-svg-icon="location"></md-icon>
-      <md-icon md-svg-icon="edit" ui-sref="members.edit({id: member.id})"></md-icon>
+      <md-icon md-svg-icon="mail" class="member-list__icon"></md-icon>
+      <md-icon md-svg-icon="location" class="member-list__icon"></md-icon>
+      <md-icon md-svg-icon="edit" ui-sref="members.edit({id: member.id})" class="member-list__icon"></md-icon>
     </div>
     <div hide-gt-xs>
       <md-icon md-svg-icon="moreMenuHor"></md-icon>

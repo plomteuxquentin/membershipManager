@@ -10,8 +10,8 @@
 
     <md-list ng-controller="SidebarController as vm">
       <md-list-item ng-class="vm.isCurrent(route)" ng-repeat="route in vm.navRoutes">
-        <md-button ui-sref="{{route.settings.target}}">
-          <md-icon md-svg-icon="{{route.settings.icon}}" class="side-bar__menu__item__icon selected"></md-icon>
+        <md-button ui-sref="{{route.settings.target}}" class="side-bar__menu__item">
+          <md-icon md-svg-icon="{{route.settings.icon}}" class="side-bar__menu__item__icon"></md-icon>
           {{route.title}}
         </md-button>
         <md-divider></md-divider>
