@@ -1,7 +1,9 @@
 @color_primary: #607D8B;
 @color_primary_dark: #455A64;
 @color_primary_light: #CFD8DC;
+@color_text_primary: #212121;
 @color_accent: #ff4081;
+@color_divider: #B6B6B6;
 
 
 html, body {
@@ -10,6 +12,7 @@ html, body {
   height:100%;
   margin: 0px;
   padding: 0px;
+  color:@color_text_primary;
 }
 
 md-toolbar h1 {
@@ -140,4 +143,58 @@ md-bottom-sheet  md-icon {
   svg {
     fill: @color_accent;
   }
+}
+
+.timeline__item__date {
+  color:@color_primary_light;
+  margin:8px;
+}
+.timeline__item__icon {
+  margin-top: -20px;
+  vertical-align: middle;
+  svg {
+    background-color:@color_primary;
+    border-radius: 50%;
+    padding: 5px;
+    color:white;
+    fill:white;
+    border: 1px solid @color_primary_dark;
+  }
+}
+
+.timeline__item__icon:after {
+  position: relative;
+  top: 33*1px;
+  left: -1*8px;
+  display: inline-block;
+  border-right: 4px solid @color_primary_dark;
+  border-bottom: 12px solid @color_primary_dark;
+  height:2px;
+  content: " ";
+  z-index: 100;
+}
+
+.timeline__item:hover{
+  background-color: lighten(@color_divider, 20%);
+  color:@color_text_primary;
+  .timeline__item__icon{
+    svg {
+      background-color:@color_accent;
+    }
+  }
+  .timeline__item__date{
+    color:@color_text_primary;
+  }
+}
+
+.timeline__item_end .timeline__item__icon:after{
+  top: 31px;
+  border-right: 2px dotted @color_primary_dark;
+  border-left: 2px dotted @color_primary_dark;
+  border-bottom:none;
+  height: 12px;
+}
+
+.timeline:hover {
+  color:lighten(@color_text_primary,50%);
 }
