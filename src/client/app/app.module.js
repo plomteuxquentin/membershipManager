@@ -11,6 +11,9 @@
     'app.members.details',
     'app.members.edit',
     'app.members.list',
-    'app.sessions'
+    'app.sessions',
+    'app.sessions.details',
+    'app.sessions.edit',
+    'app.sessions.list'
   ]);
 })();

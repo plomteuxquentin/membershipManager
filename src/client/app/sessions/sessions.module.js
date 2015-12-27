@@ -18,14 +18,12 @@
         state: 'sessions',
         config: {
           url: '/sessions',
-          templateUrl: 'app/sessions/sessions.html',
-          controller: 'SessionsController',
-          controllerAs: 'vm',
+          template: '<ui-view></ui-view>',
           title: 'sessions',
           settings: {
             nav: 2,
             icon: 'sessions',
-            target: 'sessions'
+            target: 'sessions.list'
           }
         }
       }
