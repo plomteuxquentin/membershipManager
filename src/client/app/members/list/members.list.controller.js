@@ -10,7 +10,7 @@
   function MembersListController() {
     var self = this;
     self.members = [];
-    self.search = "";
+    self.search = '';
     self.displayActions = true;
     self.removeOnBackspace = removeOnBackspace;
 

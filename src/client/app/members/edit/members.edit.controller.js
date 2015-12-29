@@ -30,13 +30,6 @@
       });
     }
 
-
-
-
-
-
-
-
     $scope.upload = function (dataUrl) {
       uploadService.upload({
         url: 'https://angular-file-upload-cors-srv.appspot.com/upload',
@@ -56,22 +49,20 @@
       });
     };
 
-    $scope.myImage='';
-    $scope.myCroppedImage= null;
+    $scope.myImage = '';
+    $scope.myCroppedImage = null;
 
-    handleFileSelect=function(evt) {
-      var file=evt.currentTarget.files[0];
+    handleFileSelect = function(evt) {
+      var file = evt.currentTarget.files[0];
       var reader = new FileReader();
       reader.onload = function (evt) {
-        $scope.$apply(function($scope){
-          $scope.myImage=evt.target.result;
+        $scope.$apply(function($scope) {
+          $scope.myImage = evt.target.result;
         });
       };
       reader.readAsDataURL(file);
     };
     angular.element(document.querySelector('#fileInput')).on('change',handleFileSelect);
-
-
 
     function dialogPicture (picture) {
       var useFullScreen;
@@ -101,7 +92,7 @@
 
       function dialogAccept (answer) {
         self.croppedPicture = answer.croppedPicture;
-        self.originalPicture= answer.originalPicture;
+        self.originalPicture = answer.originalPicture;
       }
 
       function dialogRefuse () {}

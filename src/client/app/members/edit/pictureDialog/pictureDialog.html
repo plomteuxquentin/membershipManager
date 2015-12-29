@@ -13,9 +13,15 @@
       <div class="md-dialog-content">
         <div flex layout="row" layout-align="center center">
             <div class="cropArea" flex-grow layout="row">
-              <img-crop image="pictureDialogCtrl.picture | ngfDataUrl"
+              <img-crop ng-show = "pictureDialogCtrl.picture"
+                        image="pictureDialogCtrl.picture | ngfDataUrl"
                         result-image="pictureDialogCtrl.croppedPicture">
+
               </img-crop>
+              <button ng-hide="pictureDialogCtrl.picture" flex="fill"
+                      ngf-select ngf-capture="'camera'" ng-model="pictureDialogCtrl.picture" accept="image/*">
+                <md-icon md-svg-icon="addPhoto"></md-icon>
+              </button>
             </div>
         </div>
       </div>
