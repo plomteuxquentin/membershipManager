@@ -5,9 +5,9 @@
     .module('app.layout')
     .controller('ShellController', ShellController);
 
-  ShellController.$inject = ['$rootScope', '$timeout', 'config', 'logger'];
+  ShellController.$inject = ['$rootScope', '$timeout', 'config', 'logger', '$mdSidenav'];
   /* @ngInject */
-  function ShellController($rootScope, $timeout, config, logger) {
+  function ShellController($rootScope, $timeout, config, logger, sideNavService) {
     var vm = this;
     vm.busyMessage = 'Please wait ...';
     vm.isBusy = true;
@@ -17,6 +17,8 @@
       text: 'Created by John Papa',
       link: 'http://twitter.com/john_papa'
     };
+
+    vm.toggleNav = toggleNav;
 
     activate();
 
@@ -31,5 +33,11 @@
         $rootScope.showSplash = false;
       }, 1000);
     }
+
+    function toggleNav() {
+      sideNavService('left').toggle();
+    }
+
+    // TODO remake shell.html
   }
 })();

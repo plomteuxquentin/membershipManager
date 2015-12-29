@@ -4,6 +4,7 @@
 @color_text_primary: #212121;
 @color_accent: #ff4081;
 @color_divider: #B6B6B6;
+@color_icon: #FFFFFF;
 
 
 html, body {
@@ -87,7 +88,6 @@ md-toolbar h1 {
   position: relative;
   width: 128px;
   height: 128px;
-  border: 1px solid #ddd;
   border-radius: 50%;
   display: inline-block;
   overflow: hidden;
@@ -174,7 +174,7 @@ md-bottom-sheet  md-icon {
   border-bottom: 12px solid @color_primary_dark;
   height:2px;
   content: " ";
-  z-index: 100;
+  z-index: 1;
 }
 
 .timeline__item:hover{
@@ -235,6 +235,28 @@ form .progress {
 .createMember__picture__icon {
   border-radius: 50%;
   zoom:1.75;
+}
+
+
+.members-grid___tile {
+  background-color:@color_primary;
+  cursor: pointer;
+}
+
+.members-grid___tile:focus {
+  outline: none;
+  border: 0;
+}
+
+.members-grid___tile_selected {
+  background-color:@color_accent;
+}
+
+.members-grid___tile__icon {
+  zoom:3;
+  svg {
+    fill:@color_icon;
+  }
 }
 
 

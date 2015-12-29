@@ -3,12 +3,12 @@
             md-is-locked-open="$mdMedia('gt-sm')">
 
   <md-toolbar class="md-whiteframe-z1">
-    <h1>Menu</h1>
+    <h1>Navigation</h1>
   </md-toolbar>
 
   <md-list ng-controller="SidebarController as vm">
     <md-list-item ng-class="vm.isCurrent(route)" ng-repeat="route in vm.navRoutes">
-      <md-button ui-sref="{{route.settings.target}}" class="side-bar__menu__item">
+      <md-button ui-sref="{{route.settings.target}}" class="side-bar__menu__item" ng-click="vm.toggleNav()">
         <md-icon md-svg-icon="{{route.settings.icon}}" class="side-bar__menu__item__icon"></md-icon>
         {{route.title}}
       </md-button>
@@ -19,7 +19,7 @@
 
 <div  ng-controller="ShellController as vm" flex layout="column" tabIndex="-1" role="main" class="md-whiteframe-z2">
   <md-toolbar layout="row" class="md-whiteframe-z1">
-    <md-button class="menu" hide-gt-sm ng-click="ul.toggleList()" aria-label="Show User List">
+    <md-button class="menu" hide-gt-sm ng-click="vm.toggleNav()" aria-label="Show User List">
       <md-icon md-svg-icon="menu" ></md-icon>
     </md-button>
     <h1>Membership Manager <span hide-sm hide-xs>- Effortless management</span></h1>
