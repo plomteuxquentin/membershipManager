@@ -24,6 +24,7 @@
   <!-- bower:css -->
   <link rel="stylesheet" href="/bower_components/toastr/toastr.css" />
   <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css" />
+  <link rel="stylesheet" href="/bower_components/ng-img-crop/compile/minified/ng-img-crop.css" />
   <!-- endbower -->
   <!-- endbuild -->
 
@@ -33,18 +34,9 @@
   <!-- endinject -->
   <!-- endbuild -->
 </head>
-<body ng-cloak >
-  <div style="height:100%" ng-include="'app/layout/shell.html'"></div>
-  <div id="splash-page" ng-show="showSplash">
-    <div class="page-splash">
-      <div class="page-splash-message">
-        Membership Manager
-      </div>
-      <div class="progress progress-striped active page-progress-bar">
-        <div class="bar"></div>
-      </div>
-    </div>
-  </div>
+<body layout="row" ng-cloak >
+  <div flex layout="row" ng-include="'app/layout/shell.html'"></div>
+
   <!-- build:js js/lib.js -->
   <!-- bower:js -->
   <script src="/bower_components/jquery/dist/jquery.js"></script>
@@ -58,6 +50,9 @@
   <script src="/bower_components/angular-aria/angular-aria.js"></script>
   <script src="/bower_components/angular-messages/angular-messages.js"></script>
   <script src="/bower_components/angular-material/angular-material.js"></script>
+  <script src="/bower_components/ng-file-upload/ng-file-upload.js"></script>
+  <script src="/bower_components/ng-file-upload-shim/ng-file-upload-shim.js"></script>
+  <script src="/bower_components/ng-img-crop/compile/minified/ng-img-crop.js"></script>
   <!-- endbower -->
   <!-- endbuild -->
 
@@ -100,6 +95,7 @@
   <script src="/src/client/app/layout/sidebar.controller.js"></script>
   <script src="/src/client/app/members/details/members.details.controller.js"></script>
   <script src="/src/client/app/members/edit/members.edit.controller.js"></script>
+  <script src="/src/client/app/members/edit/pictureDialog/pictureDialog.controller.js"></script>
   <script src="/src/client/app/members/list/members.list.controller.js"></script>
   <script src="/src/client/app/sessions/details/sessions.details.controller.js"></script>
   <script src="/src/client/app/sessions/edit/sessions.edit.controller.js"></script>
@@ -136,6 +132,8 @@
               .icon("clear"      , "./assets/svg/clear.svg"       , 24)
               .icon("addSession"      , "./assets/svg/addSession.svg"       , 24)
               .icon("addSeance"      , "./assets/svg/addSeance.svg"       , 24)
+              .icon("addPhoto"      , "./assets/svg/addPhoto.svg"       , 24)
+              .icon("close"      , "./assets/svg/close.svg"       , 24)
           $mdThemingProvider.theme('default')
               .primaryPalette('blue-grey')
               .accentPalette('pink');

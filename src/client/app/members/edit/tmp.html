@@ -1,0 +1,32 @@
+<form name="myForm">
+  <md-icon ngf-select ng-model="vm.picFile" accept="image/*"
+           ngf-resize="{quality: 1, type: 'image/png'}"
+           md-svg-icon="addPhoto" class="md-button"></md-icon>
+
+  <div flex layout="row" layout-align="space-around start" ng-show="vm.picFile || true">
+    <div layout="column" layout-align="center center">
+     <p class="md-title">Original</p>
+      <div ng-model="vm.picFile" ngf-pattern="image/*"
+           class="cropArea">
+        <img-crop image="vm.picFile  | ngfDataUrl"
+                  result-image="vm.croppedDataUrl" ng-init="vm.croppedDataUrl=''">
+        </img-crop>
+      </div>
+    </div>
+
+    <div layout="column" layout-align="center center">
+      <p class="md-title">Result</p>
+      <div style="height:350px; height:350px;" flex layout="column" layout-align="center center">
+        <img style="border-radius: 100%;" ng-src="{{vm.croppedDataUrl}}"/>
+      </div>
+    </div>
+  </div>
+
+  <span class="progress" ng-show="progress >= 0">
+    <div style="width:{{progress}}%" ng-bind="progress + '%'"></div>
+  </span>
+
+  <span ng-show="result">Upload Successful</span>
+  <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+</form>
+

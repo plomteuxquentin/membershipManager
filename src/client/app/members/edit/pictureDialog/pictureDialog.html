@@ -1,0 +1,37 @@
+<md-dialog aria-label="Crop picture"  ng-cloak>
+  <form>
+    <md-toolbar>
+      <div class="md-toolbar-tools">
+        <h2>Resize Picture</h2>
+        <span flex></span>
+        <md-button class="md-icon-button" ng-click="pictureDialogCtrl.cancel()">
+          <md-icon md-svg-icon="close" aria-label="Close dialog"></md-icon>
+        </md-button>
+      </div>
+    </md-toolbar>
+    <md-dialog-content>
+      <div class="md-dialog-content">
+        <div flex layout="row" layout-align="center center">
+            <div class="cropArea" flex-grow layout="row">
+              <img-crop image="pictureDialogCtrl.picture | ngfDataUrl"
+                        result-image="pictureDialogCtrl.croppedPicture">
+              </img-crop>
+            </div>
+        </div>
+      </div>
+    </md-dialog-content>
+    <md-dialog-actions layout="row">
+      <md-button class="md-button md-primary"
+                 ngf-select ngf-capture="'camera'" ng-model="pictureDialogCtrl.picture" accept="image/*">
+        Change picture
+      </md-button>
+      <span flex></span>
+      <md-button ng-click="pictureDialogCtrl.erase()">
+        Erase
+      </md-button>
+      <md-button ng-click="pictureDialogCtrl.validate()" style="margin-right:20px;">
+        Import
+      </md-button>
+    </md-dialog-actions>
+  </form>
+</md-dialog>

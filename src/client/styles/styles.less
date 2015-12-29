@@ -9,11 +9,15 @@
 html, body {
   font-family: 'Roboto', sans-serif;
   font-size:14px;
-  height:100%;
   margin: 0px;
   padding: 0px;
   color:@color_text_primary;
 }
+
+.notImplementedYet {
+  cursor: not-allowed;
+}
+
 
 md-toolbar h1 {
   margin: auto;
@@ -36,7 +40,6 @@ md-sidenav  md-list {
 /* Primary content area */
 
 #content {
-  overflow: hidden;
 }
 
 #content  {
@@ -198,3 +201,40 @@ md-bottom-sheet  md-icon {
 .timeline:hover {
   color:lighten(@color_text_primary,50%);
 }
+
+
+.cropArea {
+  overflow: hidden;
+  width: 500px;
+  height:350px;
+}
+form .progress {
+  line-height: 15px;
+}
+.progress {
+  display: inline-block;
+  width: 100px;
+  border: 3px groove #CCC;
+}
+.progress div {
+  font-size: smaller;
+  background: orange;
+  width: 0;
+}
+
+.createMember__picture {
+  cursor: pointer;
+}
+
+.createMember__picture__image {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+}
+
+.createMember__picture__icon {
+  border-radius: 50%;
+  zoom:1.75;
+}
+
+

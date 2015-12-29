@@ -1,42 +1,38 @@
-<div style="height:100%" layout="row">
+<md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2"
+            md-component-id="left"
+            md-is-locked-open="$mdMedia('gt-sm')">
 
-  <md-sidenav class="site-sidenav md-sidenav-left md-whiteframe-z2"
-              md-component-id="left"
-              md-is-locked-open="$mdMedia('gt-sm')">
+  <md-toolbar class="md-whiteframe-z1">
+    <h1>Menu</h1>
+  </md-toolbar>
 
-    <md-toolbar class="md-whiteframe-z1">
-      <h1>Menu</h1>
-    </md-toolbar>
-
-    <md-list ng-controller="SidebarController as vm">
-      <md-list-item ng-class="vm.isCurrent(route)" ng-repeat="route in vm.navRoutes">
-        <md-button ui-sref="{{route.settings.target}}" class="side-bar__menu__item">
-          <md-icon md-svg-icon="{{route.settings.icon}}" class="side-bar__menu__item__icon"></md-icon>
-          {{route.title}}
-        </md-button>
-        <md-divider></md-divider>
-      </md-list-item>
-    </md-list>
-  </md-sidenav>
-
-  <div  ng-controller="ShellController as vm" flex layout="column" tabIndex="-1" role="main" class="md-whiteframe-z2">
-    <md-toolbar layout="row" class="md-whiteframe-z1">
-      <md-button class="menu" hide-gt-sm ng-click="ul.toggleList()" aria-label="Show User List">
-        <md-icon md-svg-icon="menu" ></md-icon>
+  <md-list ng-controller="SidebarController as vm">
+    <md-list-item ng-class="vm.isCurrent(route)" ng-repeat="route in vm.navRoutes">
+      <md-button ui-sref="{{route.settings.target}}" class="side-bar__menu__item">
+        <md-icon md-svg-icon="{{route.settings.icon}}" class="side-bar__menu__item__icon"></md-icon>
+        {{route.title}}
       </md-button>
-      <h1>Membership Manager <span hide-sm hide-xs>- Effortless management</span></h1>
-    </md-toolbar>
+      <md-divider></md-divider>
+    </md-list-item>
+  </md-list>
+</md-sidenav>
 
-    <md-content flex id="content">
-      <div ui-view class="shuffle-animation"></div>
-      <div ngplus-overlay
-           ngplus-overlay-delay-in="50"
-           ngplus-overlay-delay-out="700"
-           ngplus-overlay-animation="dissolve-animation">
-        <img src="images/busy.gif"/>
-        <div class="page-spinner-message overlay-message">{{vm.busyMessage}}</div>
-      </div>
-    </md-content>
-  </div>
+<div  ng-controller="ShellController as vm" flex layout="column" tabIndex="-1" role="main" class="md-whiteframe-z2">
+  <md-toolbar layout="row" class="md-whiteframe-z1">
+    <md-button class="menu" hide-gt-sm ng-click="ul.toggleList()" aria-label="Show User List">
+      <md-icon md-svg-icon="menu" ></md-icon>
+    </md-button>
+    <h1>Membership Manager <span hide-sm hide-xs>- Effortless management</span></h1>
+  </md-toolbar>
 
+  <md-content flex id="content">
+    <div ui-view class="shuffle-animation"></div>
+    <div ngplus-overlay
+         ngplus-overlay-delay-in="50"
+         ngplus-overlay-delay-out="700"
+         ngplus-overlay-animation="dissolve-animation">
+      <img src="images/busy.gif"/>
+      <div class="page-spinner-message overlay-message">{{vm.busyMessage}}</div>
+    </div>
+  </md-content>
 </div>

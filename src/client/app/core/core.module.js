@@ -6,6 +6,7 @@
       'ngAnimate', 'ngSanitize',
       'blocks.exception', 'blocks.logger', 'blocks.router',
       'ui.router',
-      'ngplus'
+      'ngplus',
+      'ngFileUpload', 'ngImgCrop'
     ]);
 })();
