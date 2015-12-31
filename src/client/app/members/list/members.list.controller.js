@@ -21,19 +21,19 @@
         {
           id: 1,
           name: 'Quentin Plomteux',
-          icon: './assets/members/quentin.jpeg',
+          icon: './assets/members/quentin2.png',
           group: 'Close-combat'
         },
         {
           id: 2,
-          name: 'Mathilde Simar',
-          icon: './assets/members/mathilde.png',
+          name: 'Quentin Plomteux',
+          icon: './assets/members/quentin2.png',
           group: 'Close-combat'
         },
         {
           id: 3,
           name: 'Quentin Plomteux',
-          icon: './assets/members/quentin.jpeg',
+          icon: './assets/members/quentin2.png',
           group: 'Close-combat'
         }
       ];

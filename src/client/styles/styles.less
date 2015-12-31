@@ -2,9 +2,11 @@
 @color_primary_dark: #455A64;
 @color_primary_light: #CFD8DC;
 @color_text_primary: #212121;
+@color_text_secondary: #727272;
 @color_accent: #ff4081;
 @color_divider: #B6B6B6;
 @color_icon: #FFFFFF;
+@color_background: darken(#FFF,3%);
 
 
 html, body {
@@ -13,6 +15,12 @@ html, body {
   margin: 0px;
   padding: 0px;
   color:@color_text_primary;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+
 }
 
 .notImplementedYet {
@@ -39,14 +47,11 @@ md-sidenav  md-list {
 
 
 /* Primary content area */
-
-#content {
-}
-
 #content  {
   padding-left: 1*8px;
   padding-right: 1*8px;
   padding-top: 5px;
+  background-color: @color_background;
 }
 
 
@@ -257,6 +262,37 @@ form .progress {
   svg {
     fill:@color_icon;
   }
+}
+
+.session-detail__seanceLeft_1 {
+  color:@color_primary;
+}
+.session-detail__seanceLeft_0 {
+  color:@color_accent;
+}
+.session-detail__seanceLeft_demo {
+  color:@color_divider;
+}
+
+.profilt__contact__seance-left_number {
+  color:@color_primary;
+}
+.profilt__contact__seance-left_text {
+  color:@color_text_secondary;
+}
+
+.profil__contact__item {
+  svg {
+    fill:@color_primary
+  }
+}
+
+
+.profil__contact__item:hover{
+  cursor:pointer;
+  svg {
+      fill:@color_accent
+    }
 }
 
 

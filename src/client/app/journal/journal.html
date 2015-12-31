@@ -1,11 +1,21 @@
-<md-list class="timeline">
-  <md-list-item ng-repeat="event in vm.events"
-                flex layout="row" layout-align="space-around center"
-                class="timeline__item">
-    <div flex="initial" class="timeline__item__date">
-      {{event.date | date:'MMM d, y'}}
-    </div>
-    <div flex-gt-xs="10" flex-xs="20" class="timeline__item__icon"><md-icon md-svg-icon="{{event.icon}}"></md-icon></div>
-    <div flex>{{event.title}}</div>
-  </md-list-item>
-</md-list>
+<md-card>
+  <md-card-content>
+  <md-tabs md-dynamic-height md-border-bottom>
+    <md-tab label="All">
+      <md-content class="md-padding">
+        <time-line events="vm.events.all" flex></time-line>
+      </md-content>
+    </md-tab>
+    <md-tab label="Sessions">
+      <md-content class="md-padding">
+        <time-line events="vm.events.session" flex></time-line>
+      </md-content>
+    </md-tab>
+    <md-tab label="Buy">
+      <md-content class="md-padding">
+        <time-line events="vm.events.buy" flex></time-line>
+      </md-content>
+    </md-tab>
+  </md-tabs>
+</md-card-content>
+</md-card>

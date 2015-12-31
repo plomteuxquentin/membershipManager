@@ -8,54 +8,109 @@
   JournalController.$inject = [];
   /* @ngInject */
   function JournalController() {
-    var self = this;
-    self.events = [];
+    var vm = this;
+    vm.events = {};
 
     activate();
 
     function activate() {
-      self.events = [
+      vm.events.all = [
         {
           id: 1,
           date: new Date('09/19/2014'),
           icon: 'addMember',
-          title: 'Kamille Subscription'
+          title: 'Subscribe to close-combat',
+          type: 'admin'
         },
         {
           id: 2,
           date: new Date('09/26/2014'),
           icon: 'addSeance',
-          title: 'Kamille bought 10 seances'
+          title: 'bought 10 seances',
+          type: 'buy'
         },
         {
           id: 3,
           date: new Date('09/27/2014'),
           icon: 'addSession',
-          title: 'Session of close-combat'
+          title: 'Session of close-combat',
+          type: 'session'
         },
         {
           id: 3,
           date: new Date('09/27/2014'),
           icon: 'addSession',
-          title: 'Session of close-combat'
+          title: 'Session of close-combat',
+          type: 'session'
         },
         {
           id: 3,
           date: new Date('09/27/2014'),
           icon: 'addSession',
-          title: 'Session of close-combat'
+          title: 'Session of close-combat',
+          type: 'session'
         },
         {
           id: 3,
           date: new Date('09/27/2014'),
           icon: 'addSession',
-          title: 'Session of close-combat'
+          title: 'Session of close-combat',
+          type: 'session'
         },
         {
           id: 3,
           date: new Date('09/27/2014'),
           icon: 'addSession',
-          title: 'Session of close-combat'
+          title: 'Session of close-combat',
+          type: 'session'
+        }
+      ];
+
+      vm.events.session = [
+        {
+          id: 3,
+          date: new Date('09/27/2014'),
+          icon: 'addSession',
+          title: 'Session of close-combat',
+          type: 'session'
+        },
+        {
+          id: 3,
+          date: new Date('09/27/2014'),
+          icon: 'addSession',
+          title: 'Session of close-combat',
+          type: 'session'
+        },
+        {
+          id: 3,
+          date: new Date('09/27/2014'),
+          icon: 'addSession',
+          title: 'Session of close-combat',
+          type: 'session'
+        },
+        {
+          id: 3,
+          date: new Date('09/27/2014'),
+          icon: 'addSession',
+          title: 'Session of close-combat',
+          type: 'session'
+        },
+        {
+          id: 3,
+          date: new Date('09/27/2014'),
+          icon: 'addSession',
+          title: 'Session of close-combat',
+          type: 'session'
+        }
+      ];
+
+      vm.events.buy = [
+        {
+          id: 2,
+          date: new Date('09/26/2014'),
+          icon: 'addSeance',
+          title: 'bought 10 seances',
+          type: 'buy'
         }
       ];
     }

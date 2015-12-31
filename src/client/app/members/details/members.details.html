@@ -1,1 +1,66 @@
-details
+<div flex layout-gt-xs="row" layout-align="start start">
+  <md-card>
+    <img ng-src="{{vm.member.picture}}" alt="{{vm.member.name}} picture" class="md-whiteframe-1dp" />
+    <md-card-content>
+      <md-list>
+        <md-list-item layout-align="center center" layout="column">
+          <div class="md-display-2 profilt__contact__seance-left_number">
+            {{vm.member.seanceLeft}}
+          </div>
+          <p class="md-subhead profilt__contact__seance-left_text">
+            seances left
+          </p>
+        </md-list-item>
+        <md-list-item>
+          <div>{{vm.member.name}}</div>
+        </md-list-item>
+        <a ng-href="mailto:{{vm.member.email}}">
+          <md-list-item class="profil__contact__item">
+            <div flex="90">{{vm.member.email}}</div>
+            <md-icon md-svg-icon="mail"></md-icon>
+          </md-list-item>
+        </a>
+        <a nghref="tel:{{vm.member.phone}}">
+          <md-list-item class="profil__contact__item">
+            <div flex="90">{{vm.member.phone}}</div>
+            <md-icon md-svg-icon="phone"></md-icon>
+          </md-list-item>
+        </a>
+        <a ng-href="http://maps.google.com/?q={{vm.member.address}}" target="_blank">
+          <md-list-item class="profil__contact__item">
+            <div flex="90">{{vm.member.address}}</div>
+            <md-icon md-svg-icon="location"></md-icon>
+          </md-list-item>
+        </a>
+      </md-list>
+    </md-card-content>
+  </md-card>
+
+  <md-card flex>
+    <md-card-header>
+      <md-card-header-text>
+        <p class="md-title">Your timeline</p>
+      </md-card-header-text>
+    </md-card-header>
+    <md-card-content>
+      <md-tabs md-dynamic-height md-border-bottom>
+        <md-tab label="All">
+          <md-content class="md-padding">
+            <time-line events="vm.member.events.all" flex></time-line>
+          </md-content>
+        </md-tab>
+        <md-tab label="Sessions">
+          <md-content class="md-padding">
+            <time-line events="vm.member.events.session" flex></time-line>
+          </md-content>
+        </md-tab>
+        <md-tab label="Buy">
+          <md-content class="md-padding">
+            <time-line events="vm.member.events.buy" flex></time-line>
+
+          </md-content>
+        </md-tab>
+      </md-tabs>
+    </md-card-content>
+  </md-card>
+</div>

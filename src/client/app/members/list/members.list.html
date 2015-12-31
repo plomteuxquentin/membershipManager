@@ -18,24 +18,28 @@
   </md-input-container>
 </div>
 
-<md-list>
-  <md-list-item
-      ng-repeat="member in vm.members| filter:{$:vm.search}"
-      ui-sref="members.details({id: member.id})">
-    <img alt="{{member.name}}" ng-src="{{member.icon}}" class="md-avatar" />
-    <p class="member-list__name">{{member.name}}</p>
-    <p>{{member.group}}</p>
-    <div hide-xs flex layout="row" layout-align="space-around center">
-      <md-icon md-svg-icon="mail" class="member-list__icon"></md-icon>
-      <md-icon md-svg-icon="location" class="member-list__icon"></md-icon>
-      <md-icon md-svg-icon="edit" ui-sref="members.edit({id: member.id})" class="member-list__icon"></md-icon>
-    </div>
-    <div hide-gt-xs>
-      <md-icon md-svg-icon="moreMenuHor"></md-icon>
-    </div>
-    <md-divider md-inset></md-divider>
-  </md-list-item>
-</md-list>
+<md-card>
+  <md-card-content>
+    <md-list>
+      <md-list-item
+          ng-repeat="member in vm.members| filter:{$:vm.search}"
+          ui-sref="members.details({id: member.id})">
+        <img alt="{{member.name}}" ng-src="{{member.icon}}" class="md-avatar md-whiteframe-2dp" />
+        <p class="member-list__name">{{member.name}}</p>
+        <p>{{member.group}}</p>
+        <div hide-xs flex layout="row" layout-align="space-around center">
+          <md-icon md-svg-icon="mail" class="member-list__icon"></md-icon>
+          <md-icon md-svg-icon="location" class="member-list__icon"></md-icon>
+          <md-icon md-svg-icon="edit" ui-sref="members.edit({id: member.id})" class="member-list__icon"></md-icon>
+        </div>
+        <div hide-gt-xs>
+          <md-icon md-svg-icon="moreMenuHor"></md-icon>
+        </div>
+        <md-divider md-inset></md-divider>
+      </md-list-item>
+    </md-list>
+  </md-card-content>
+</md-card>
 
 
 <div ui-view></div>
