@@ -13,16 +13,16 @@
       restrict: 'E',
       templateUrl: 'app/core/directives/timeline.directive.html',
       scope: {
-        events:'='
+        events: '=',
+        filter: '='
       },
       controller: Controller,
-      controllerAs:'timelineCtrl',
+      controllerAs: 'timelineCtrl',
       bindToController: true
     };
   }
 
   function Controller() {
   }
-})();
 
-// TODO tab to filter event type
+})();

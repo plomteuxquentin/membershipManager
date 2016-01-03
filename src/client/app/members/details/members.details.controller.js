@@ -5,122 +5,86 @@
     .module('app.members.details')
     .controller('MembersDetailsController', MembersDetailsController);
 
-  MembersDetailsController.$inject = [];
+  MembersDetailsController.$inject = ['$stateParams', 'membersFactory','$filter'];
   /* @ngInject */
-  function MembersDetailsController() {
+  function MembersDetailsController(params, Members) {
     var vm = this;
-    vm.member = {
-      name: 'Quentin Plomteux',
-      picture: './assets/members/quentin2.png',
-      address: '13 avenue de broqueville 1200 Bruxelles',
-      email: 'plomteuxquentin@gmail.com',
-      phone: '+32 0474 55 63 30',
-      seanceLeft: 5,
-      events: {}
+    vm.member = {};
+
+    vm.filter = {
+      session: {category: 'SESSION'},
+      buy: {category: 'BUY'}
     };
 
-    activate();
+    activate(params.id);
 
-    function activate() {
-      vm.member.events.all = [
-        {
-          id: 1,
-          date: new Date('09/19/2014'),
-          icon: 'addMember',
-          title: 'Subscribe to close-combat',
-          type: 'admin'
-        },
-        {
-          id: 2,
-          date: new Date('09/26/2014'),
-          icon: 'addSeance',
-          title: 'bought 10 seances',
-          type: 'buy'
-        },
-        {
-          id: 3,
-          date: new Date('09/27/2014'),
-          icon: 'addSession',
-          title: 'Session of close-combat',
-          type: 'session'
-        },
-        {
-          id: 3,
-          date: new Date('09/27/2014'),
-          icon: 'addSession',
-          title: 'Session of close-combat',
-          type: 'session'
-        },
-        {
-          id: 3,
-          date: new Date('09/27/2014'),
-          icon: 'addSession',
-          title: 'Session of close-combat',
-          type: 'session'
-        },
-        {
-          id: 3,
-          date: new Date('09/27/2014'),
-          icon: 'addSession',
-          title: 'Session of close-combat',
-          type: 'session'
-        },
-        {
-          id: 3,
-          date: new Date('09/27/2014'),
-          icon: 'addSession',
-          title: 'Session of close-combat',
-          type: 'session'
-        }
-      ];
-
-      vm.member.events.session = [
-        {
-          id: 3,
-          date: new Date('09/27/2014'),
-          icon: 'addSession',
-          title: 'Session of close-combat',
-          type: 'session'
-        },
-        {
-          id: 3,
-          date: new Date('09/27/2014'),
-          icon: 'addSession',
-          title: 'Session of close-combat',
-          type: 'session'
-        },
-        {
-          id: 3,
-          date: new Date('09/27/2014'),
-          icon: 'addSession',
-          title: 'Session of close-combat',
-          type: 'session'
-        },
-        {
-          id: 3,
-          date: new Date('09/27/2014'),
-          icon: 'addSession',
-          title: 'Session of close-combat',
-          type: 'session'
-        },
-        {
-          id: 3,
-          date: new Date('09/27/2014'),
-          icon: 'addSession',
-          title: 'Session of close-combat',
-          type: 'session'
-        }
-      ];
-
-      vm.member.events.buy = [
-        {
-          id: 2,
-          date: new Date('09/26/2014'),
-          icon: 'addSeance',
-          title: 'bought 10 seances',
-          type: 'buy'
-        }
-      ];
+    function activate(id) {
+      loadMembers(id).then(function() {
+        vm.member.events = [
+            {
+              id: 1,
+              date: new Date('09/19/2014'),
+              icon: 'addMember',
+              title: 'Subscribe to close-combat',
+              category: 'ADMIN'
+            },
+            {
+              id: 2,
+              date: new Date('09/26/2014'),
+              icon: 'addSeance',
+              title: 'bought 10 seances',
+              category: 'BUY'
+            },
+            {
+              id: 3,
+              date: new Date('09/27/2014'),
+              icon: 'addSession',
+              title: 'Session of close-combat',
+              category: 'SESSION'
+            },
+            {
+              id: 3,
+              date: new Date('09/27/2014'),
+              icon: 'addSession',
+              title: 'Session of close-combat',
+              category: 'SESSION'
+            },
+            {
+              id: 3,
+              date: new Date('09/27/2014'),
+              icon: 'addSession',
+              title: 'Session of close-combat',
+              category: 'SESSION'
+            },
+            {
+              id: 3,
+              date: new Date('09/27/2014'),
+              icon: 'addSession',
+              title: 'Session of close-combat',
+              category: 'SESSION'
+            },
+            {
+              id: 3,
+              date: new Date('09/27/2014'),
+              icon: 'addSession',
+              title: 'Session of close-combat',
+              category: 'SESSION'
+            }
+        ];
+      });
     }
+
+    function loadMembers(id) {
+      return Members.get({id:id}, onQuerySuccess, onQueryFail).$promise;
+
+      function onQuerySuccess(response) {
+        vm.member = response;
+      }
+
+      function onQueryFail(reason) {
+        console.error('Unable to load member: ' + reason);
+      }
+    }
+
   }
 })();

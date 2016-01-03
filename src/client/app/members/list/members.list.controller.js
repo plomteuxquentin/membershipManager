@@ -5,43 +5,36 @@
     .module('app.members.list')
     .controller('MembersListController', MembersListController);
 
-  MembersListController.$inject = [];
+  MembersListController.$inject = ['membersFactory'];
   /* @ngInject */
-  function MembersListController() {
-    var self = this;
-    self.members = [];
-    self.search = '';
-    self.displayActions = true;
-    self.removeOnBackspace = removeOnBackspace;
+  function MembersListController(Members) {
+    var vm = this;
+    vm.members = [];
+    vm.search = '';
+    vm.displayActions = true;
+    vm.removeOnBackspace = removeOnBackspace;
 
     activate();
 
     function activate() {
-      self.members = [
-        {
-          id: 1,
-          name: 'Quentin Plomteux',
-          icon: './assets/members/quentin2.png',
-          group: 'Close-combat'
-        },
-        {
-          id: 2,
-          name: 'Quentin Plomteux',
-          icon: './assets/members/quentin2.png',
-          group: 'Close-combat'
-        },
-        {
-          id: 3,
-          name: 'Quentin Plomteux',
-          icon: './assets/members/quentin2.png',
-          group: 'Close-combat'
-        }
-      ];
+      loadMembers();
+    }
+
+    function loadMembers() {
+      return Members.query(onQuerySuccess, onQueryFail);
+
+      function onQuerySuccess(response) {
+        vm.members = response;
+      }
+
+      function onQueryFail(reason) {
+        console.error('Unable to load members : ' + reason);
+      }
     }
 
     function removeOnBackspace (event) {
-      if (event.keyCode === 8 && self.search.length === 0) {
-        self.displayActions = true;
+      if (event.keyCode === 8 && vm.search.length === 0) {
+        vm.displayActions = true;
         event.preventDefault();
       }
     }

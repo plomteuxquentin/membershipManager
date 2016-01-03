@@ -2,13 +2,13 @@
   'use strict';
 
   angular
-    .module('app.core.service')
-    .factory('memberFactory', memberFactory);
+    .module('app.core.entities')
+    .factory('membersFactory', membersFactory);
 
-  memberFactory.$inject = ['$resource'];
+  membersFactory.$inject = ['$resource'];
   /* @ngInject */
-  function memberFactory(resourceService) {
-    var URL = '/api/member/:id';
+  function membersFactory(resourceService) {
+    var URL = '/api/members/:id';
     var ID = '@_id';
 
     var service = resourceService(URL, {

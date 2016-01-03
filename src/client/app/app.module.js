@@ -4,6 +4,7 @@
   angular.module('app', [
     'ngMaterial',
     'app.core',
+    'app.core.entities',
     'app.widgets',
     'app.layout',
     'app.journal',

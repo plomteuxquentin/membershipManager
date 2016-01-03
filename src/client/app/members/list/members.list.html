@@ -23,8 +23,8 @@
     <md-list>
       <md-list-item
           ng-repeat="member in vm.members| filter:{$:vm.search}"
-          ui-sref="members.details({id: member.id})">
-        <img alt="{{member.name}}" ng-src="{{member.icon}}" class="md-avatar md-whiteframe-2dp" />
+          ui-sref="members.details({id: member._id})">
+        <img alt="{{member.name}}" ng-src="{{member.picture}}" class="md-avatar md-whiteframe-2dp" />
         <p class="member-list__name">{{member.name}}</p>
         <p>{{member.group}}</p>
         <div hide-xs flex layout="row" layout-align="space-around center">

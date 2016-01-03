@@ -5,18 +5,27 @@
     .module('app.members.edit')
     .controller('MembersEditController', MembersEditController);
 
-  MembersEditController.$inject = ['$scope','$timeout', 'Upload', '$mdDialog', '$mdMedia'];
+  MembersEditController.$inject = [
+      'membersFactory', '$state','$scope','$timeout', 'Upload', '$mdDialog', '$mdMedia'
+    ];
   /* @ngInject */
-  function MembersEditController($scope, $timeout, uploadService, dialogService, mediaService) {
-
+  function MembersEditController(Members, stateService, $scope, $timeout, uploadService,
+                                 dialogService, mediaService) {
     var self = this;
+    var vm = this;
     var handleFileSelect;
+    var dialogOptions;
 
-    self.croppedPicture = null;
-    self.originalPicture = null;
+    var IMAGE_WIDTH = 150;
+    var IMAGE_HEIGHT = 150;
+
+    vm.member = {};
+    vm.croppedPicture = null;
+    vm.originalPicture = null;
     self.picFile = null;
 
     self.dialogPicture = dialogPicture;
+    vm.save = save;
 
     activate();
 
@@ -28,6 +37,18 @@
           dialogPicture(newValue);
         }
       });
+    }
+
+    function save() {
+      Members.save(vm.member).$promise.then(handleSaveSuccess, handleSaveFail);
+
+      function handleSaveSuccess(response) {
+        stateService.go('members.details',{id:response._id});
+      }
+
+      function handleSaveFail(reason) {
+        console.debug('save failed : ' + reason);
+      }
     }
 
     $scope.upload = function (dataUrl) {
@@ -73,9 +94,15 @@
 
       picture = (picture) ? picture : self.originalPicture;
 
+      $scope.$watch(function() {
+        return mediaService('xs') || mediaService('sm');
+      }, function(wantsFullScreen) {
+        $scope.customFullscreen = (wantsFullScreen === true);
+      });
+
       useFullScreen = (mediaService('sm') || mediaService('xs')) && $scope.customFullscreen;
 
-      dialogService.show({
+      dialogOptions = {
         controller: 'MembersPictureDialogController',
         controllerAs: 'pictureDialogCtrl',
         templateUrl: 'app/members/edit/pictureDialog/pictureDialog.html',
@@ -87,33 +114,27 @@
         locals: {
           picture: picture
         }
-      })
-        .then(dialogAccept,dialogRefuse);
+      };
+
+      dialogService.show(dialogOptions).then(dialogAccept,dialogRefuse);
 
       function dialogAccept (answer) {
-        self.croppedPicture = answer.croppedPicture;
-        self.originalPicture = answer.originalPicture;
+        vm.croppedPicture = answer.croppedPicture;
+        vm.originalPicture = answer.originalPicture;
       }
 
       function dialogRefuse () {}
-
-      $scope.$watch(function() {
-        return mediaService('xs') || mediaService('sm');
-      }, function(wantsFullScreen) {
-        $scope.customFullscreen = (wantsFullScreen === true);
-      });
     }
 
     // upload on file select or drop
-    function photoUpload (file) {
+    function photoUpload () {
       var load;
-      var width = 40;
-      var height = 40;
+      var IMAGE_POST_URL = '/api/members/image';
 
-      if (self.form.photo.$valid && self.form.photo) {
+      if (vm.form.photo && vm.form.photo.$valid) {
         load = {
-          url: 'members/create/image',
-          data: {file: uploadService.rename(file, Date.now())}
+          url: IMAGE_POST_URL,
+          data: {file: uploadService.rename(vm.croppedPicture, Date.now())}
         };
 
         uploadService(load).then(

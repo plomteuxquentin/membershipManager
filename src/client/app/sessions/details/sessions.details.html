@@ -8,8 +8,8 @@
         <p>{{vm.session.members.length}} members present</p>
       </md-subheader>
       <md-list-item class="md-3-line"
-                    ng-repeat="member in vm.session.members"
-                    ui-sref="members.details({id: member.id})">
+                    ng-repeat="member in vm.session.participants"
+                    ui-sref="members.details({id: member._id})">
         <div class="md-list-item-text" layout="row" >
           <img alt="{{member.name}}" ng-src="{{member.picture}}" class="md-avatar"/>
           <p flex>{{member.name}}</p>

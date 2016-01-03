@@ -246,6 +246,10 @@ form .progress {
 .members-grid___tile {
   background-color:@color_primary;
   cursor: pointer;
+  overflow: hidden;
+  -webkit-filter: grayscale(100%) opacity(50%); filter: grayscale(100%), opacity(50%)opacity(50%);
+  -webkit-filter: ; filter: ;
+
 }
 
 .members-grid___tile:focus {
@@ -255,6 +259,8 @@ form .progress {
 
 .members-grid___tile_selected {
   background-color:@color_accent;
+  -webkit-filter: none; filter: none;
+
 }
 
 .members-grid___tile__icon {

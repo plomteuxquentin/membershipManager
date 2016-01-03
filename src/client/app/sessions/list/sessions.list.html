@@ -10,7 +10,7 @@
     <md-list>
       <md-list-item ng-repeat="session in vm.sessions"
                     flex layout="row" layout-align="space-around center"
-                    ui-sref="sessions.details({id: session.id})">
+                    ui-sref="sessions.details({id: session._id})">
         <div flex="45" layout="row" layout-align="space-around center" hide-xs>
           <div flex>{{session.date | date:'MMMM'}}</div>
           <div flex>{{session.date | date:'EEEE d'}}</div>

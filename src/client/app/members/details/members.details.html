@@ -46,18 +46,17 @@
       <md-tabs md-dynamic-height md-border-bottom>
         <md-tab label="All">
           <md-content class="md-padding">
-            <time-line events="vm.member.events.all" flex></time-line>
+            <time-line events="vm.member.events" flex></time-line>
           </md-content>
         </md-tab>
         <md-tab label="Sessions">
           <md-content class="md-padding">
-            <time-line events="vm.member.events.session" flex></time-line>
+            <time-line events="vm.member.events" filter="vm.filter.session" flex></time-line>
           </md-content>
         </md-tab>
         <md-tab label="Buy">
           <md-content class="md-padding">
-            <time-line events="vm.member.events.buy" flex></time-line>
-
+            <time-line events="vm.member.events" filter="vm.filter.buy"flex></time-line>
           </md-content>
         </md-tab>
       </md-tabs>
