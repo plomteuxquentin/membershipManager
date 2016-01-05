@@ -21,7 +21,6 @@
 
       function onQuerySuccess(response) {
         vm.session = response;
-        console.log(response);
       }
 
       function onQueryFail(reason) {

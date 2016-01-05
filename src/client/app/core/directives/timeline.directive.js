@@ -5,9 +5,6 @@
     .module('app.core')
     .directive('timeLine', timeLine);
 
-  // this is the directive you add to any element you want to highlight after creation;
-
-  /* @ngInject */
   function timeLine() {
     return {
       restrict: 'E',
@@ -22,7 +19,25 @@
     };
   }
 
-  function Controller() {
-  }
+  Controller.$inject = ['$scope'];
 
+  function Controller(scope) {
+    var ICONS_MAP = {
+      CREATE_MEMBER: 'addMember',
+      CREATE_SESSION: 'addSession',
+      UPDATE_SESSION: 'updated',
+      UPDATE_MEMBER: 'updated',
+      BUY_SEANCE: 'addSeance'
+    };
+
+    if (this.filter) {
+      scope.$watch('timelineCtrl.events', function (newValue, oldValue) {
+        if (newValue && newValue.length) {
+          newValue.forEach(function(event) {
+            event.icon = ICONS_MAP[event.type];
+          });
+        }
+      });
+    }
+  }
 })();

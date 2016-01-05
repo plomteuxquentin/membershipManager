@@ -7,6 +7,7 @@
 @color_divider: #B6B6B6;
 @color_icon: #FFFFFF;
 @color_background: darken(#FFF,3%);
+@color_list_hover: darken(#FFF,6%);
 
 
 html, body {
@@ -140,6 +141,9 @@ md-bottom-sheet  md-icon {
   cursor: pointer;
 }
 
+.member-list__item:hover {
+  background-color: @color_list_hover
+}
 
 .member-list__icon {
  svg {

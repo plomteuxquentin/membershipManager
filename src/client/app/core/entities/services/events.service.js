@@ -8,13 +8,18 @@
   eventsFactory.$inject = ['$resource'];
   /* @ngInject */
   function eventsFactory(resourceService) {
-    var URL = '/api/event/:id';
+    var URL = '/api/events/:id';
     var ID = '@_id';
 
     return resourceService(URL, {
       id: ID
     }, {
-      update: {method: 'PUT'}
+      update: {method: 'PUT'},
+      queryMember: {
+        method: 'GET',
+        params: {member: '@member'},
+        isArray: true
+      }
     });
   }
 })();

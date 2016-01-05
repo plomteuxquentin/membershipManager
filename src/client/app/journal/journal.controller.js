@@ -5,114 +5,29 @@
     .module('app.journal')
     .controller('JournalController', JournalController);
 
-  JournalController.$inject = [];
+  JournalController.$inject = ['eventsFactory'];
   /* @ngInject */
-  function JournalController() {
+  function JournalController(Events) {
     var vm = this;
-    vm.events = {};
+    vm.events = [];
 
     activate();
 
     function activate() {
-      vm.events.all = [
-        {
-          id: 1,
-          date: new Date('09/19/2014'),
-          icon: 'addMember',
-          title: 'Subscribe to close-combat',
-          type: 'admin'
-        },
-        {
-          id: 2,
-          date: new Date('09/26/2014'),
-          icon: 'addSeance',
-          title: 'bought 10 seances',
-          type: 'buy'
-        },
-        {
-          id: 3,
-          date: new Date('09/27/2014'),
-          icon: 'addSession',
-          title: 'Session of close-combat',
-          type: 'session'
-        },
-        {
-          id: 3,
-          date: new Date('09/27/2014'),
-          icon: 'addSession',
-          title: 'Session of close-combat',
-          type: 'session'
-        },
-        {
-          id: 3,
-          date: new Date('09/27/2014'),
-          icon: 'addSession',
-          title: 'Session of close-combat',
-          type: 'session'
-        },
-        {
-          id: 3,
-          date: new Date('09/27/2014'),
-          icon: 'addSession',
-          title: 'Session of close-combat',
-          type: 'session'
-        },
-        {
-          id: 3,
-          date: new Date('09/27/2014'),
-          icon: 'addSession',
-          title: 'Session of close-combat',
-          type: 'session'
-        }
-      ];
+      loadEvents();
+    }
 
-      vm.events.session = [
-        {
-          id: 3,
-          date: new Date('09/27/2014'),
-          icon: 'addSession',
-          title: 'Session of close-combat',
-          type: 'session'
-        },
-        {
-          id: 3,
-          date: new Date('09/27/2014'),
-          icon: 'addSession',
-          title: 'Session of close-combat',
-          type: 'session'
-        },
-        {
-          id: 3,
-          date: new Date('09/27/2014'),
-          icon: 'addSession',
-          title: 'Session of close-combat',
-          type: 'session'
-        },
-        {
-          id: 3,
-          date: new Date('09/27/2014'),
-          icon: 'addSession',
-          title: 'Session of close-combat',
-          type: 'session'
-        },
-        {
-          id: 3,
-          date: new Date('09/27/2014'),
-          icon: 'addSession',
-          title: 'Session of close-combat',
-          type: 'session'
-        }
-      ];
+    function loadEvents() {
+      return Events.query(handleQuerySuccess, handleQueryFail).$promise;
 
-      vm.events.buy = [
-        {
-          id: 2,
-          date: new Date('09/26/2014'),
-          icon: 'addSeance',
-          title: 'bought 10 seances',
-          type: 'buy'
-        }
-      ];
+      function handleQuerySuccess(response) {
+        vm.events = response;
+      }
+
+      function handleQueryFail(reason) {
+        console.log('unable to load events : ' + reason);
+
+      }
     }
   }
 })();

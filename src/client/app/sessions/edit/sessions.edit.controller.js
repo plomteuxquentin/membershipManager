@@ -5,16 +5,17 @@
     .module('app.sessions.edit')
     .controller('SessionsEditController', SessionsEditController);
 
-  SessionsEditController.$inject = ['membersFactory','$state'];
+  SessionsEditController.$inject = ['membersFactory','sessionsFactory','$state'];
   /* @ngInject */
-  function SessionsEditController(Members, stateService) {
+  function SessionsEditController(Members, Sessions, stateService) {
     var vm = this;
 
+    vm.session = {};
     vm.members = [];
-    vm.membersPresent = [];
+    vm.session.participants = [];
 
     vm.toggleSelect = toggleSelect;
-    vm.submit = submit;
+    vm.save = save;
 
     activate();
 
@@ -36,16 +37,30 @@
 
     function toggleSelect(member) {
       if (member.selected) {
-        vm.membersPresent.pop(member);
+        vm.session.participants.pop(member);
         member.selected = false;
       } else {
-        vm.membersPresent.push(member);
+        vm.session.participants.push(member);
         member.selected = true;
       }
     }
 
-    function submit() {
-      stateService.go('sessions.details',{id: 1});
+    function save() {
+      vm.session.participants.forEach(function(member) {
+        delete member.selected;
+      });
+
+      vm.session.nbrSubscribers = vm.members.length;
+
+      Sessions.save(vm.session).$promise.then(handleSaveSuccess, handleSaveFail);
+
+      function handleSaveSuccess(response) {
+        stateService.go('sessions.details',{id:response._id});
+      }
+
+      function handleSaveFail(reason) {
+        console.debug('save failed : ' + reason);
+      }
     }
   }
 })();

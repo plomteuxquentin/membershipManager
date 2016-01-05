@@ -5,11 +5,13 @@
     .module('app.members.details')
     .controller('MembersDetailsController', MembersDetailsController);
 
-  MembersDetailsController.$inject = ['$stateParams', 'membersFactory','$filter'];
+  MembersDetailsController.$inject = ['$stateParams', 'membersFactory', 'eventsFactory'];
   /* @ngInject */
-  function MembersDetailsController(params, Members) {
+  function MembersDetailsController(params, Members, Events) {
     var vm = this;
-    vm.member = {};
+    vm.member = {
+      event: []
+    };
 
     vm.filter = {
       session: {category: 'SESSION'},
@@ -19,66 +21,17 @@
     activate(params.id);
 
     function activate(id) {
-      loadMembers(id).then(function() {
-        vm.member.events = [
-            {
-              id: 1,
-              date: new Date('09/19/2014'),
-              icon: 'addMember',
-              title: 'Subscribe to close-combat',
-              category: 'ADMIN'
-            },
-            {
-              id: 2,
-              date: new Date('09/26/2014'),
-              icon: 'addSeance',
-              title: 'bought 10 seances',
-              category: 'BUY'
-            },
-            {
-              id: 3,
-              date: new Date('09/27/2014'),
-              icon: 'addSession',
-              title: 'Session of close-combat',
-              category: 'SESSION'
-            },
-            {
-              id: 3,
-              date: new Date('09/27/2014'),
-              icon: 'addSession',
-              title: 'Session of close-combat',
-              category: 'SESSION'
-            },
-            {
-              id: 3,
-              date: new Date('09/27/2014'),
-              icon: 'addSession',
-              title: 'Session of close-combat',
-              category: 'SESSION'
-            },
-            {
-              id: 3,
-              date: new Date('09/27/2014'),
-              icon: 'addSession',
-              title: 'Session of close-combat',
-              category: 'SESSION'
-            },
-            {
-              id: 3,
-              date: new Date('09/27/2014'),
-              icon: 'addSession',
-              title: 'Session of close-combat',
-              category: 'SESSION'
-            }
-        ];
-      });
+      loadMembers(id)
+        .then(loadEvents(id));
     }
 
     function loadMembers(id) {
-      return Members.get({id:id}, onQuerySuccess, onQueryFail).$promise;
+      return Members.get({id: id}, onQuerySuccess, onQueryFail).$promise;
 
       function onQuerySuccess(response) {
         vm.member = response;
+        vm.member.event = [];
+        return id;
       }
 
       function onQueryFail(reason) {
@@ -86,5 +39,17 @@
       }
     }
 
+    function loadEvents(id) {
+      return Events.queryMember({member: id}, handleQuerySuccess, handleQueryFail).$promise;
+
+      function handleQuerySuccess(response) {
+        vm.member.events = response;
+      }
+
+      function handleQueryFail(reason) {
+        console.error('unable to load events : ' + reason);
+
+      }
+    }
   }
 })();
