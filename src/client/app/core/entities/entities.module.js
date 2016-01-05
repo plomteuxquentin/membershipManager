@@ -220,7 +220,7 @@
           picture:'./assets/members/1.png',
           seanceLeft: 0,
           address: '13 avenue de broqueville 1200 Bruxelles',
-          email: 'plomteuxquentin@gmail.com',
+          email: 'tlannister@got.com',
           phone: '+32 0474 55 63 30'
         },
         {
@@ -229,7 +229,7 @@
           picture:'./assets/members/2.png',
           seanceLeft: 0,
           address: '13 avenue de broqueville 1200 Bruxelles',
-          email: 'plomteuxquentin@gmail.com',
+          email: 'jsnow@got.com',
           phone: '+32 0474 55 63 30'
         },
         {
@@ -238,7 +238,7 @@
           picture:'./assets/members/3.png',
           seanceLeft: 0,
           address: '13 avenue de broqueville 1200 Bruxelles',
-          email: 'plomteuxquentin@gmail.com',
+          email: 'sStrak@got.com',
           phone: '+32 0474 55 63 30'
         },
         {
@@ -247,7 +247,7 @@
           picture:'./assets/members/4.png',
           seanceLeft: 0,
           address: '13 avenue de broqueville 1200 Bruxelles',
-          email: 'plomteuxquentin@gmail.com',
+          email: 'jbaratheon@got.com',
           phone: '+32 0474 55 63 30'
         },
         {
@@ -256,7 +256,7 @@
           picture:'./assets/members/5.png',
           seanceLeft: 0,
           address: '13 avenue de broqueville 1200 Bruxelles',
-          email: 'plomteuxquentin@gmail.com',
+          email: 'mtyrell@got.com',
           phone: '+32 0474 55 63 30'
         },
         {
@@ -265,7 +265,7 @@
           picture:'./assets/members/6.png',
           seanceLeft: 0,
           address: '13 avenue de broqueville 1200 Bruxelles',
-          email: 'plomteuxquentin@gmail.com',
+          email: 'kdrogo@got.com',
           phone: '+32 0474 55 63 30'
         }
       ];

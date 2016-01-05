@@ -14,6 +14,7 @@
     vm.displayActions = true;
     vm.displaySelection =  displaySelection;
     vm.removeOnBackspace = removeOnBackspace;
+    vm.getMailto = getMailto;
 
     activate();
 
@@ -44,6 +45,17 @@
       return vm.members.some(function(member){
         return member.selected;
       });
+    }
+
+    function getMailto() {
+      var mails = [];
+      vm.members.forEach(function(member) {
+        if (member.selected) {
+          mails.push(member.email);
+        }
+      });
+      console.log(mails.join());
+      return mails.join() || '';
     }
   }
 })();
