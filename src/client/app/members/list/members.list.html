@@ -1,24 +1,23 @@
 <div class="action-bar" flex layout="row" layout-align="space-between">
-  <div layout="row" flex ng-show="vm.displaySelection()">
-    <md-button class="md-fab" ui-sref="members.edit({id: ''})">
+  <div layout="row" flex ng-if="vm.displaySelection()"
+       class="action-bar__items">
+    <a class="md-button md-fab" href="mailto:{{vm.getMails()}}">
       <md-icon md-svg-icon="mail"></md-icon>
-    </md-button>
-    <md-button class="md-fab" ui-sref="members.edit({id: ''})">
+    </a>
+    <a class="md-button md-fab" href="sms:{{vm.getSMS()}}">
       <md-icon md-svg-icon="sms"></md-icon>
-    </md-button>
+    </a>
   </div>
 
-  <div layout="row" ng-show="vm.displayActions"  flex layout="row" layout-align="end center">
-    <div class="action-bar" flex layout="row" layout-align="end center">
-      <md-button class="md-fab" ui-sref="sessions.edit({id:''})">
-        <md-icon md-svg-icon="addSession"></md-icon>
-      </md-button>
-    </div>
-    <md-button class="md-fab" ui-sref="members.edit({id: ''})">
+  <div class="action-bar" ng-show="vm.displayActions"  flex layout="row" layout-align="end center">
+    <md-button class="md-fab" ui-sref="sessions.edit({id:''})" aria-label="add a session">
+      <md-icon md-svg-icon="addSession"></md-icon>
+    </md-button>
+    <md-button class="md-fab" ui-sref="members.edit({id: ''})" aria-label="add a member">
       <md-icon md-svg-icon="addMember"></md-icon>
     </md-button>
 
-    <md-button class="md-fab" ng-click="vm.displayActions=false">
+    <md-button class="md-fab" ng-click="vm.displayActions=false" aria-label="filter members">
       <md-icon md-svg-icon="search"></md-icon>
     </md-button>
   </div>
@@ -27,8 +26,8 @@
 <div layout="row" ng-if="!vm.displayActions" flex>
   <md-input-container flex>
     <md-icon class="search__input-contrainer__icon" md-svg-icon="clear" ng-click="vm.displayActions=true"></md-icon>
-    <label>Search</label>
-    <input ng-model="vm.search" auto-focus ng-keydown="vm.removeOnBackspace($event)">
+    <label>Search    </label>
+    <input ng-model="vm.search" title="filter members" auto-focus ng-keydown="vm.removeOnBackspace($event)">
   </md-input-container>
 </div>
 

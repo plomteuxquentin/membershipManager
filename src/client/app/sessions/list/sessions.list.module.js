@@ -16,8 +16,8 @@
     return [
       {
         state: 'sessions.list',
+        url: '',
         config: {
-          url: '/list',
           templateUrl: 'app/sessions/list/sessions.list.html',
           controller: 'SessionsListController',
           controllerAs: 'vm',

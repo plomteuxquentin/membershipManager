@@ -14,7 +14,8 @@
     vm.displayActions = true;
     vm.displaySelection =  displaySelection;
     vm.removeOnBackspace = removeOnBackspace;
-    vm.getMailto = getMailto;
+    vm.getMails = getMails;
+    vm.getSMS = getSMS;
 
     activate();
 
@@ -42,20 +43,29 @@
     }
 
     function displaySelection() {
-      return vm.members.some(function(member){
+      return vm.members.some(function(member) {
         return member.selected;
       });
     }
 
-    function getMailto() {
+    function getMails() {
       var mails = [];
       vm.members.forEach(function(member) {
         if (member.selected) {
           mails.push(member.email);
         }
       });
-      console.log(mails.join());
-      return mails.join() || '';
+      return mails.join();
+    }
+
+    function getSMS() {
+      var sms = [];
+      vm.members.forEach(function(member) {
+        if (member.selected) {
+          sms.push(member.phone);
+        }
+      });
+      return sms.join();
     }
   }
 })();

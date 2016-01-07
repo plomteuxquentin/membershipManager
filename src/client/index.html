@@ -25,6 +25,7 @@
   <link rel="stylesheet" href="/bower_components/toastr/toastr.css" />
   <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css" />
   <link rel="stylesheet" href="/bower_components/ng-img-crop/compile/minified/ng-img-crop.css" />
+  <link rel="stylesheet" href="/bower_components/animate.css/animate.css" />
   <!-- endbower -->
   <!-- endbuild -->
 
@@ -67,7 +68,6 @@
   <script src="/src/client/app/blocks/router/router.module.js"></script>
   <script src="/src/client/app/core/core.module.js"></script>
   <script src="/src/client/app/core/entities/entities.module.js"></script>
-  <script src="/src/client/app/dashboard/dashboard.module.js"></script>
   <script src="/src/client/app/journal/journal.module.js"></script>
   <script src="/src/client/app/layout/layout.module.js"></script>
   <script src="/src/client/app/members/details/members.details.module.js"></script>
@@ -88,14 +88,11 @@
   <script src="/src/client/app/core/config.js"></script>
   <script src="/src/client/app/core/constants.js"></script>
   <script src="/src/client/app/core/core.route.js"></script>
-  <script src="/src/client/app/core/dataservice.js"></script>
   <script src="/src/client/app/core/directives/autoFocus.directive.js"></script>
   <script src="/src/client/app/core/directives/timeline.directive.js"></script>
   <script src="/src/client/app/core/entities/services/events.service.js"></script>
   <script src="/src/client/app/core/entities/services/members.service.js"></script>
   <script src="/src/client/app/core/entities/services/sessions.service.js"></script>
-  <script src="/src/client/app/dashboard/dashboard.controller.js"></script>
-  <script src="/src/client/app/dashboard/dashboard.route.js"></script>
   <script src="/src/client/app/journal/journal.controller.js"></script>
   <script src="/src/client/app/layout/ht-top-nav.directive.js"></script>
   <script src="/src/client/app/layout/shell.controller.js"></script>
@@ -115,37 +112,5 @@
   <!-- endinject -->
   <!-- endbuild -->
 
-  <script type="text/javascript">
-    angular
-        .module('app')
-        .config(function($mdThemingProvider, $mdIconProvider){
-          $mdIconProvider
-              .defaultIconSet("./assets/svg/avatars.svg", 128)
-              .icon("menu"       , "./assets/svg/menu.svg"        , 24)
-              .icon("share"      , "./assets/svg/share.svg"       , 24)
-              .icon("members"      , "./assets/svg/members.svg"       , 24)
-              .icon("sessions"      , "./assets/svg/sessions.svg"       , 24)
-              .icon("sms"      , "./assets/svg/sms.svg"       , 24)
-              .icon("phone"      , "./assets/svg/call.svg"       , 24)
-              .icon("mail"      , "./assets/svg/mail.svg"       , 24)
-              .icon("location"      , "./assets/svg/location.svg"       , 24)
-              .icon("moreMenuHor"      , "./assets/svg/moreMenuHor.svg"       , 24)
-              .icon("defaultMember"      , "./assets/svg/defaultMember.svg"       , 24)
-              .icon("addMember"      , "./assets/svg/addMember.svg"       , 24)
-              .icon("journal"      , "./assets/svg/journal.svg"       , 24)
-              .icon("search"      , "./assets/svg/search.svg"       , 24)
-              .icon("edit"      , "./assets/svg/edit.svg"       , 24)
-              .icon("add"      , "./assets/svg/add.svg"       , 24)
-              .icon("clear"      , "./assets/svg/clear.svg"       , 24)
-              .icon("addSession"      , "./assets/svg/addSession.svg"       , 24)
-              .icon("addSeance"      , "./assets/svg/addSeance.svg"       , 24)
-              .icon("addPhoto"      , "./assets/svg/addPhoto.svg"       , 24)
-              .icon("close"      , "./assets/svg/close.svg"       , 24)
-              .icon("view"      , "./assets/svg/view.svg"       , 24)
-          $mdThemingProvider.theme('default')
-              .primaryPalette('blue-grey')
-              .accentPalette('pink');
-        });
-  </script>
 </body>
 </html>

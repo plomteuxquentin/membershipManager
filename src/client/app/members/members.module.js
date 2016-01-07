@@ -18,7 +18,7 @@
         state: 'members',
         config: {
           url: '/members',
-          template: '<ui-view></ui-view>',
+          template: '<ui-view ></ui-view>',
           title: 'members',
           settings: {
             nav: 1,

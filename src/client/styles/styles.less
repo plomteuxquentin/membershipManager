@@ -15,7 +15,6 @@ html, body {
   font-size:14px;
   margin: 0px;
   padding: 0px;
-  color:@color_text_primary;
 }
 
 a {
@@ -23,6 +22,18 @@ a {
   text-decoration: none;
 
 }
+
+
+*::selection {
+  background: @color_accent; /* WebKit/Blink Browsers */
+  color: white;
+}
+*::-moz-selection {
+  background: @color_accent; /* Gecko Browsers */
+  color: white;
+}
+
+
 
 .notImplementedYet {
   cursor: not-allowed;
@@ -53,8 +64,9 @@ md-sidenav  md-list {
   padding-right: 1*8px;
   padding-top: 5px;
   background-color: @color_background;
-}
 
+
+}
 
 #content md-icon.avatar {
   margin-top: 10px;
@@ -298,11 +310,78 @@ form .progress {
 }
 
 
-.profil__contact__item:hover{
-  cursor:pointer;
+.profil__contact__item:hover {
+  cursor: pointer;
   svg {
-      fill:@color_accent
-    }
+    fill: @color_accent
+  }
+}
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+                                    //ANIMATIONS\\
+
+////////////////////////////////////////////////////////////////////////////////////////////////////
+
+.action-bar__items {
+  &.ng-enter{
+    -webkit-animation: fadeIn 0.50s;
+    -moz-animation: fadeIn 0.50s;
+    -ms-animation: fadeIn 0.50s;
+    animation: fadeIn 0.50s;
+  }
+  &.ng-leave {
+    -webkit-animation: fadeOut 0.50s;
+    -moz-animation: fadeOut 0.50s;
+    -ms-animation: fadeOut 0.50s;
+    animation: fadeOut 0.50s;
+  }
 }
 
 
+/* Have to set height explicity on ui-view
+to prevent collapsing during animation*/
+.well[ui-view]{
+  height: 300px;
+}
+
+.ui-view-container {
+  position: relative;
+}
+
+[ui-view].ng-enter, [ui-view].ng-leave {
+  position: absolute;
+  left: 0;
+  right: 0;
+  margin-left: 8px;
+  margin-right: 8px;
+  -webkit-transition:all 0.75s ease;
+  -moz-transition:all 0.75s ease;
+  -o-transition:all 0.75s ease;
+  transition:all 0.75s ease;
+}
+
+[ui-view].ng-enter {
+  opacity: 0;
+  -webkit-transform:fadeIn;
+  -moz-transform:fadeIn;
+  transform:fadeIn;
+}
+
+[ui-view].ng-enter-active {
+  opacity: 1;
+}
+
+[ui-view].ng-leave {
+  opacity: 1;
+  /*padding-left: 0px;*/
+  -webkit-transform:fadeOut;
+  -moz-transform:fadeOut;
+  transform:fadeOut;
+}
+
+[ui-view].ng-leave-active {
+  opacity: 0;
+  /*padding-left: 100px;*/
+
+}

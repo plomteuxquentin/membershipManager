@@ -16,8 +16,8 @@
     return [
       {
         state: 'members.list',
+        url: '',
         config: {
-          url: '/list',
           templateUrl: 'app/members/list/members.list.html',
           controller: 'MembersListController',
           controllerAs: 'vm',

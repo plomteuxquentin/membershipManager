@@ -2,7 +2,6 @@
   'use strict';
 
   angular.module('app', [
-    'ngMaterial',
     'app.core',
     'app.core.entities',
     'app.widgets',
