@@ -16,8 +16,8 @@
     return [
       {
         state: 'journal',
+        url: '/journal',
         config: {
-          url: '/journal',
           templateUrl: 'app/journal/journal.html',
           controller: 'JournalController',
           controllerAs: 'vm',
