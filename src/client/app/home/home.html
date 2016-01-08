@@ -1,0 +1,22 @@
+<div layout="row" layout-wrap>
+  <md-card ng-repeat="card in vm.cards" flex="100" flex-gt-md="45">
+    <a ui-sref="{{card.location}}">
+      <md-card-title>
+        <md-card-title-text>
+          <span class="md-headline">{{card.title}}</span>
+          <span class="md-subhead">{{card.description}}</span>
+        </md-card-title-text>
+        <md-card-title-media>
+          <div class="md-media-lg dashboard__card__picture" layout="column" layout-align="center center">
+            <md-icon md-svg-icon="{{card.icon}}" class="dashboard__card__picture__icon"></md-icon>
+          </div>
+        </md-card-title-media>
+      </md-card-title>
+      <md-card-actions layout="row" layout-align="end center">
+        <a ng-repeat="action in card.actions" class="md-button md-primary md-raised" ui-sref="{{action.location}}">
+          {{action.title}}
+        </a>
+      </md-card-actions>
+    </a>
+  </md-card>
+</div>

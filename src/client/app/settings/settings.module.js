@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('app.journal', ['app.core', 'app.widgets'])
+    .module('app.settings', ['app.core', 'app.widgets'])
     .run(appRun);
 
   appRun.$inject = ['routerHelper'];
@@ -15,17 +15,17 @@
   function getStates() {
     return [
       {
-        state: 'journal',
+        state: 'settings',
         config: {
-          url: '/journal',
-          templateUrl: 'app/journal/journal.html',
-          controller: 'JournalController',
+          url: '/settings',
+          templateUrl: 'app/settings/settings.html',
+          controller: 'SettingsController',
           controllerAs: 'vm',
-          title: 'journal',
+          title: 'Settings',
           settings: {
-            nav: 40,
-            icon: 'journal',
-            target: 'journal'
+            nav: 50,
+            icon: 'settings',
+            target: 'settings'
           }
         }
       }

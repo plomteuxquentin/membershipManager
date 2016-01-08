@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('app.members.list', ['app.core', 'app.widgets'])
+    .module('app.home', ['app.core', 'app.widgets'])
     .run(appRun);
 
   appRun.$inject = ['routerHelper'];
@@ -15,13 +15,13 @@
   function getStates() {
     return [
       {
-        state: 'members.list',
+        state: 'home',
         config: {
-          url: '/list',
-          templateUrl: 'app/members/list/members.list.html',
-          controller: 'MembersListController',
+          url: '/home',
+          templateUrl: 'app/home/home.html',
+          controller: 'HomeController',
           controllerAs: 'vm',
-          title: 'members list'
+          title: 'home'
         }
       }
     ];

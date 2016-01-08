@@ -61,7 +61,10 @@
       .icon('addSeance',      ICON_FOLDER + 'addSeance.svg',       ICON_SIZE)
       .icon('addPhoto',       ICON_FOLDER + 'addPhoto.svg',        ICON_SIZE)
       .icon('close',          ICON_FOLDER + 'close.svg',           ICON_SIZE)
-      .icon('view',           ICON_FOLDER + 'view.svg',            ICON_SIZE);
+      .icon('view',           ICON_FOLDER + 'view.svg',            ICON_SIZE)
+      .icon('dashboard',      ICON_FOLDER + 'dashboard.svg',       ICON_SIZE)
+      .icon('settings',       ICON_FOLDER + 'settings.svg',        ICON_SIZE)
+      .icon('home',           ICON_FOLDER + 'home.svg',            ICON_SIZE);
 
     mdThemingProvider.theme('default')
       .primaryPalette(COLOR_PRIMARY)

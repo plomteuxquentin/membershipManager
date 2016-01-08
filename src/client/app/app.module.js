@@ -7,6 +7,8 @@
     'app.widgets',
     'app.layout',
     'app.journal',
+    'app.home',
+    'app.settings',
     'app.members',
     'app.members.details',
     'app.members.edit',

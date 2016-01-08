@@ -18,10 +18,10 @@
         state: 'sessions',
         config: {
           url: '/sessions',
-          template: '<ui-view></ui-view>',
+          template: '<div ui-view-container><ui-view class="well"></ui-view></div>',
           title: 'sessions',
           settings: {
-            nav: 2,
+            nav: 20,
             icon: 'sessions',
             target: 'sessions.list'
           }

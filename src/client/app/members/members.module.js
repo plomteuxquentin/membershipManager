@@ -21,7 +21,7 @@
           template: '<ui-view ></ui-view>',
           title: 'members',
           settings: {
-            nav: 1,
+            nav: 10,
             icon: 'members',
             target: 'members.list'
           }

@@ -8,6 +8,8 @@
 @color_icon: #FFFFFF;
 @color_background: darken(#FFF,3%);
 @color_list_hover: darken(#FFF,6%);
+@color_spinner: #F58A00;
+
 
 
 html, body {
@@ -188,11 +190,11 @@ md-bottom-sheet  md-icon {
 
 .timeline__item__icon:after {
   position: relative;
-  top: 33*1px;
+  top: 38*1px;
   left: -1*8px;
   display: inline-block;
   border-right: 4px solid @color_primary_dark;
-  border-bottom: 12px solid @color_primary_dark;
+  border-bottom: 16px solid @color_primary_dark;
   height:2px;
   content: " ";
   z-index: 1;
@@ -309,13 +311,89 @@ form .progress {
   }
 }
 
-
 .profil__contact__item:hover {
   cursor: pointer;
   svg {
     fill: @color_accent
   }
 }
+
+
+.dashboard__card__picture {
+}
+
+.dashboard__card__picture__icon {
+  zoom:3;
+  svg {
+    fill: @color_divider;
+
+  }
+}
+
+
+
+
+
+
+
+
+
+.ngplus-overlay-background {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  padding-left: 100px;
+  z-index: 10000;
+  height: 100%;
+  width: 100%;
+  background-color: #808080;
+  opacity: 0.2;
+}
+
+.ngplus-overlay-content {
+  position: absolute;
+  /*border: 1px solid #000;*/
+  /*background-color: #fff;*/
+  font-weight: bold;
+  height: 100px;
+  width: 300px;
+  z-index: 10000;
+  margin: auto auto;
+}
+
+.page-spinner-message {
+  font-size: 400%;
+  font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+  font-weight: normal;
+  -webkit-text-shadow: 2px 2px #000000;
+  text-shadow: 2px 2px #000000;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.15);
+  text-transform: uppercase;
+  text-decoration: none;
+  color: @color_spinner;
+  padding: 0;
+}
+
+.page-spinner-message.page-spinner-message-subtle {
+  margin: auto  auto;
+  font-size: 200%;
+}
+
+.overlay-message {
+  font-size: 200%;
+}
+
+.page-spinner {
+  color: @color_spinner;
+  svg{
+    color: @color_spinner;
+    fill: @color_spinner;
+  }
+  stroke: @color_spinner;
+}
+
+
+
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////
 
@@ -342,7 +420,7 @@ form .progress {
 /* Have to set height explicity on ui-view
 to prevent collapsing during animation*/
 .well[ui-view]{
-  height: 300px;
+  height: 100px;
 }
 
 .ui-view-container {
