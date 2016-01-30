@@ -5,9 +5,9 @@
     .module('app.members.list')
     .controller('MembersListController', MembersListController);
 
-  MembersListController.$inject = ['membersFactory', '$filter'];
+  MembersListController.$inject = ['membersFactory', '$filter', '$state'];
   /* @ngInject */
-  function MembersListController(Members, filter) {
+  function MembersListController(Members, filter, stateService) {
     var vm = this;
     vm.members = [];
     vm.search = '';
@@ -16,6 +16,7 @@
     vm.removeOnBackspace = removeOnBackspace;
     vm.getMails = getMails;
     vm.getSMS = getSMS;
+    vm.goToAddSeance =  goToAddSeance;
 
     activate();
 
@@ -66,6 +67,11 @@
         }
       });
       return sms.join();
+    }
+
+    function goToAddSeance(member) {
+      console.log('goToAddSeance');
+      stateService.go('seances', {'id':member._id});
     }
   }
 })();

@@ -107,7 +107,6 @@
       }
 
       entity = store[entityType].find(function(_entity) {
-        console.log(_entity._id + ' = ' + id);
         return _entity._id === parseInt(id);
       });
 

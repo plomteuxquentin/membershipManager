@@ -9,6 +9,7 @@
     'app.journal',
     'app.home',
     'app.settings',
+    'app.seances',
     'app.members',
     'app.members.details',
     'app.members.edit',
