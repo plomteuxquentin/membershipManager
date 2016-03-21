@@ -17,7 +17,7 @@
       {
         state: 'members.edit',
         config: {
-          url: ':id/edit',
+          url: '/edit/:id',
           templateUrl: 'app/members/edit/members.edit.html',
           controller: 'MembersEditController',
           controllerAs: 'vm',
