@@ -13,9 +13,6 @@
     <md-button class="md-fab" ui-sref="seances({id:''})" aria-label="add a seances">
       <md-icon md-svg-icon="addSeance"></md-icon>
     </md-button>
-    <md-button class="md-fab" ui-sref="sessions.edit({id:''})" aria-label="add a session">
-      <md-icon md-svg-icon="addSession"></md-icon>
-    </md-button>
     <md-button class="md-fab" ui-sref="members.edit({id: ''})" aria-label="add a member">
       <md-icon md-svg-icon="addMember"></md-icon>
     </md-button>
@@ -44,12 +41,12 @@
           <img alt="{{member.name}}" ng-src="{{member.picture}}" class="md-avatar md-whiteframe-2dp" />
           <p flex layout="row" layout-align="space-between" class="member-list__name">
             <span>{{member.name}}</span>
-            <span flex="20">{{member.seanceLeft}}</span>
+            <span flex="20" style="text-align:center">{{member.display.seanceLeft}}</span>
           </p>
           <div hide-xs flex layout="row" layout-align="space-around center">
             <md-icon flex md-svg-icon="addSeance" class="member-list__icon" ui-sref="seances({id: member._id})" ng-click="$event.stopPropagation()"></md-icon>
             <md-icon flex md-svg-icon="mail" class="member-list__icon"></md-icon>
-            <md-icon flex md-svg-icon="edit" ui-sref="members.edit({id: member.id})" class="member-list__icon"></md-icon>
+            <md-icon flex md-svg-icon="edit" class="member-list__icon" ui-sref="members.edit({id: member._id})" ng-click="$event.stopPropagation()"></md-icon>
           </div>
           <div hide-gt-xs>
             <md-icon md-svg-icon="moreMenuHor"></md-icon>

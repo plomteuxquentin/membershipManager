@@ -6,10 +6,12 @@
     .controller('MembersEditController', MembersEditController);
 
   MembersEditController.$inject = [
-      'membersFactory', '$state','$scope','$timeout', 'Upload', '$mdDialog', '$mdMedia'
+      'membersFactory', '$state', '$stateParams','$scope','$timeout', 'Upload', '$mdDialog',
+    '$mdMedia'
     ];
   /* @ngInject */
-  function MembersEditController(Members, stateService, $scope, $timeout, uploadService,
+  function MembersEditController(Members, stateService, stateParams,
+                                 $scope, $timeout, uploadService,
                                  dialogService, mediaService) {
     var self = this;
     var vm = this;
@@ -27,9 +29,13 @@
     self.dialogPicture = dialogPicture;
     vm.save = save;
 
-    activate();
+    activate(stateParams.id);
 
-    function activate () {
+    function activate (id) {
+
+      if (id) {
+        loadMember(id);
+      }
 
       // Call dialogPicture if a picture is selected
       $scope.$watch(function() {return self.picFile;}, function(newValue, oldValue) {
@@ -39,15 +45,32 @@
       });
     }
 
-    function save() {
-      Members.save(vm.member).$promise.then(handleSaveSuccess, handleSaveFail);
+    function loadMember(id) {
+      return Members.get({id: id}, onQuerySuccess, onQueryFail).$promise;
+
+      function onQuerySuccess(member) {
+        vm.member = member;
+      }
+
+      function onQueryFail(reason) {
+        console.error('Unable to load member : ' + reason);
+      }
+    }
+
+    function save()  {
+      if (vm.member._id) {
+        Members.update(vm.member,handleSaveSuccess, handleSaveFail);
+      } else {
+        Members.save(vm.member,handleSaveSuccess, handleSaveFail);
+      }
 
       function handleSaveSuccess(response) {
         stateService.go('members.details',{id:response._id});
       }
 
       function handleSaveFail(reason) {
-        console.debug('save failed : ' + reason);
+        console.debug('save failed :');
+        console.debug(reason);
       }
     }
 

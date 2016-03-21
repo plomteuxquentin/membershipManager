@@ -27,7 +27,8 @@
       CREATE_SESSION: 'addSession',
       UPDATE_SESSION: 'updated',
       UPDATE_MEMBER: 'updated',
-      BUY_SEANCE: 'addSeance'
+      BUY_SEANCE: 'addSeance',
+      BUY_SEASON_PASS: 'addSeance'
     };
 
     if (this.filter) {

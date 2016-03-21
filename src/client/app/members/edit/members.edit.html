@@ -13,11 +13,13 @@
             <img ng-if="vm.croppedPicture"
                  ng-src="{{vm.croppedPicture}}"
                  ng-click="vm.dialogPicture()"
-                 class="createMember__picture__image"/>
+                 class="createMember__picture__image"
+                 aria-label="profil pictuer"/>
 
             <md-button ng-if="!vm.croppedPicture" tabindex="-1"
                        class="md-fab createMember__picture__icon" style="width: inherit;height: inherit"
-                       ngf-select ngf-capture="'camera'" ng-model="vm.picFile" accept="image/*">
+                       ngf-select ngf-capture="'camera'" ng-model="vm.picFile" accept="image/*"
+                       aria-label="Add a photo">
               <md-icon md-svg-icon="addPhoto"></md-icon>
             </md-button>
           </div>
@@ -48,22 +50,17 @@
             </div>
           </md-input-container>
           <md-input-container class="md-block" flex-gt-xs>
-            <label>Address</label>
-            <input name="Address" ng-model="vm.member.address"
-                   required>
-          </md-input-container>
-        </div>
-        <div>
-          <md-input-container class="md-block" flex-gt-xs>
             <label>Phone Number</label>
             <input name="phone" ng-model="vm.member.phone"
                    required/>
           </md-input-container>
         </div>
-
-        <div flex layout="row" layout-align="space-between">
-          <md-datepicker class="md-block" name=birthday ng-model="vm.member.birthday" md-placeholder="day of birth">
-          </md-datepicker>
+        <md-input-container class="md-block" flex-gt-xs>
+          <label>Address</label>
+          <input name="Address" ng-model="vm.member.address"
+                 required>
+        </md-input-container>
+        <div>
 
         </div>
       </form>

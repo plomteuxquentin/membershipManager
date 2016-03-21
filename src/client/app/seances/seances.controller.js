@@ -5,19 +5,40 @@
     .module('app.seances')
     .controller('SeancesController', SeancesController);
 
-  SeancesController.$inject = ['membersFactory', '$filter', '$stateParams','$scope'];
+  SeancesController.$inject = [
+    'membersFactory',
+    'seancesFactory',
+    '$filter',
+    '$state',
+    '$stateParams'
+  ];
   /* @ngInject */
-  function SeancesController(Members, filter, stateParams, scope) {
+  function SeancesController(Members, Seances, filter, state, stateParams) {
     var vm = this;
-    vm.selection = '';
+    vm.selection = {};
     vm.seances = {};
-    vm.types = ['abonnement', 'ticket'];
     vm.members = [];
     vm.member = undefined;
+    vm.options = [
+      {
+        value: 'full',
+        label: 'Season pass'
+      },
+      {
+        value: '1',
+        label: '1 seance'
+      },
+      {
+        value: '5',
+        label: '5 seances'
+      },
+      {
+        value: '10',
+        label: '10 seances'
+      }
+    ];
 
     vm.save = save;
-    vm.isSelected = isSelected;
-    vm.select = select;
 
     activate();
 
@@ -50,14 +71,30 @@
       }
     }
 
-    function save() {}
+    function save() {
+      if (['1','5','10'].indexOf(vm.selection) !== -1) {
+        Seances.addTicket(
+          {member: vm.member._id, number: vm.selection},
+          onQuerySucess,
+          onQueryFail
+        );
+      }
+      else {
+        Seances.addSeasonPass(
+          {member:vm.member._id, type: vm.selection},
+          onQuerySucess,
+          onQueryFail
+        );
+      }
 
-    function isSelected(entry) {
-      return vm.selection === entry;
-    }
+      function onQuerySucess(response) {
+        console.log(response);
+        state.go('members.list');
+      }
 
-    function select(entry) {
-      vm.selection = entry;
+      function onQueryFail(reason) {
+        console.log(reason);
+      }
     }
   }
 })();
