@@ -32,11 +32,11 @@
         vm.members.forEach(function(member) {
           member.display = {};
           if (member.monthlypass.lastPeriodEnd >= new Date()) {
-            member.display.seanceLeft = member.monthlypass.lastPeriodEnd.getDate() + '-' +
+            member.display.seancesLeft = member.monthlypass.lastPeriodEnd.getDate() + '-' +
               (member.monthlypass.lastPeriodEnd.getMonth() + 1) + '-' +
               member.monthlypass.lastPeriodEnd.getFullYear();
           } else {
-            member.display.seanceLeft = member.seanceLeft;
+            member.display.seancesLeft = member.seancesLeft;
           }
         });
       }

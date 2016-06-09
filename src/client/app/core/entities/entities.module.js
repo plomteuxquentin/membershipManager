@@ -217,7 +217,7 @@
 
       store.members.forEach(function(member) {
         if (participantsID.indexOf(member._id) !== -1) {
-          member.seanceLeft--;
+          member.seancesLeft--;
           session.participants.push(member);
         }
       });
@@ -230,7 +230,7 @@
     function createMember(newMember) {
       newMember._id = generateId();
       newMember.name = newMember.firstName + ' ' + newMember.lastName;
-      newMember.seanceLeft = 0;
+      newMember.seancesLeft = 0;
       newMember.monthlypass = {
         lastPeriodEnd : new Date(),
         periods: []
@@ -249,7 +249,7 @@
         return 'Unable to retrieve member ' + participant;
       }
 
-      member.seanceLeft += Number(nbrSeance);
+      member.seancesLeft += Number(nbrSeance);
 
       logEvent('BUY_SEANCE', [member], date);
     }
@@ -318,7 +318,7 @@
           firstName: 'Tyrion',
           lastName: 'Lannister',
           picture:'./assets/members/1.png',
-          seanceLeft: 0,
+          seancesLeft: 0,
           address: '13 avenue de broqueville 1200 Bruxelles',
           email: 'tlannister@got.com',
           phone: '+32 0474 55 63 30'
@@ -327,7 +327,7 @@
           firstName: 'John',
           lastName: 'Snow',
           picture:'./assets/members/2.png',
-          seanceLeft: 0,
+          seancesLeft: 0,
           address: '13 avenue de broqueville 1200 Bruxelles',
           email: 'jsnow@got.com',
           phone: '+32 0474 55 63 30'
@@ -336,7 +336,7 @@
           firstName: 'Sansa',
           lastName: 'Stark',
           picture:'./assets/members/3.png',
-          seanceLeft: 0,
+          seancesLeft: 0,
           address: '13 avenue de broqueville 1200 Bruxelles',
           email: 'sStrak@got.com',
           phone: '+32 0474 55 63 30'
@@ -345,7 +345,7 @@
           firstName: 'Joffrey',
           lastName: 'Baratheon',
           picture:'./assets/members/4.png',
-          seanceLeft: 0,
+          seancesLeft: 0,
           address: '13 avenue de broqueville 1200 Bruxelles',
           email: 'jbaratheon@got.com',
           phone: '+32 0474 55 63 30'
@@ -354,7 +354,7 @@
           firstName: 'Margaery',
           lastName: 'Tyrell',
           picture:'./assets/members/5.png',
-          seanceLeft: 0,
+          seancesLeft: 0,
           address: '13 avenue de broqueville 1200 Bruxelles',
           email: 'mtyrell@got.com',
           phone: '+32 0474 55 63 30'
@@ -363,7 +363,7 @@
           firstName: 'Khal',
           lastName: 'Drogo',
           picture:'./assets/members/6.png',
-          seanceLeft: 0,
+          seancesLeft: 0,
           address: '13 avenue de broqueville 1200 Bruxelles',
           email: 'kdrogo@got.com',
           phone: '+32 0474 55 63 30'
