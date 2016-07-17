@@ -1,14 +1,15 @@
-(function() {
+(function () {
   'use strict';
 
   angular
-    .module('app.core')
-    .run(appRun);
+      .module('app.core')
+      .run(appRun);
 
   /* @ngInject */
   function appRun(routerHelper) {
     var otherwise = '/404';
-    routerHelper.configureStates(getStates(), otherwise);
+
+    routerHelper.configureStates(getStates(), '/home');
   }
 
   function getStates() {

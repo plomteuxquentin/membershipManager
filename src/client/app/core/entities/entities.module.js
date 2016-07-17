@@ -21,6 +21,8 @@
 
     storeMocks();
 
+    httpBackend.whenGET('\/api\/members').passThrough();
+
     httpBackend.whenPOST('/api/seances/ticket').respond(addTicket);
     httpBackend.whenPOST('/api/seances/season-pass').respond(addSeasonPass);
 
@@ -130,38 +132,7 @@
       return response;
     }
 
-    function handlePut(method, url, data, headers, params) {
-      var updatedEntity = angular.fromJson(data);
-      var regexp = new RegExp('\\/api\\/([a-zA-Z0-9_-]+)\\/([0-9]+)');
-      var entityType = url.match(regexp)[1];
-      var id = url.match(regexp)[2];
-      var index;
-
-      if (!store.hasOwnProperty(entityType)) {
-        return [404, null, null, 'unknown API'];
-      }
-
-      if (entityType === 'members') {
-        index = store[entityType].findIndex(function(member) {
-          return member._id === parseInt(id);
-        });
-
-        if (index < 0) {
-          return [404, null, null, 'member not found'];
-        }
-
-        updatedEntity.name = updatedEntity.firstName + ' ' + updatedEntity.lastName;
-
-        store[entityType].splice(index, 1, updatedEntity);
-
-        console.log('update member : ');
-        console.log(updatedEntity);
-      } else {
-        throw new Error('unimplemented PUT route');
-      }
-
-      return [201, updatedEntity];
-    }
+    function handlePut(method, url, data, headers, params) {}
 
     function logEvent(type, eventEntities, date) {
       var EVENTS = {
@@ -184,10 +155,6 @@
         BUY_SEANCE: {
           category: 'BUY',
           title: 'Seances bought'
-        },
-        BUY_SEASON_PASS: {
-          category: 'BUY',
-          title: 'Season pass bought'
         }
       };
 
@@ -217,7 +184,7 @@
 
       store.members.forEach(function(member) {
         if (participantsID.indexOf(member._id) !== -1) {
-          member.seancesLeft--;
+          member.seanceLeft--;
           session.participants.push(member);
         }
       });
@@ -230,85 +197,22 @@
     function createMember(newMember) {
       newMember._id = generateId();
       newMember.name = newMember.firstName + ' ' + newMember.lastName;
-      newMember.seancesLeft = 0;
-      newMember.monthlypass = {
-        lastPeriodEnd : new Date(),
-        periods: []
-      };
+      newMember.seanceLeft = 0;
 
       logEvent('CREATE_MEMBER', [newMember]);
       return newMember;
     }
 
     function buySeance(participant, nbrSeance, date) {
-      var member = store.members.find(function(entity) {
+      var entity = store.members.find(function(entity) {
         return participant._id === entity._id;
       });
 
-      if (!member) {
-        return 'Unable to retrieve member ' + participant;
-      }
+      // TODO handle not found
 
-      member.seancesLeft += Number(nbrSeance);
+      entity.seanceLeft += nbrSeance;
 
-      logEvent('BUY_SEANCE', [member], date);
-    }
-
-    function buySeasonPass(participant, type, date) {
-      var END_OF_SEASON = new Date('2016-08-31');
-      var SEASON_PASS = {
-        FULL: 'full',
-        HALF: 'half',
-        QUART: 'quart'
-      };
-
-      var member = store.members.find(function(entity) {
-        return participant._id === entity._id;
-      });
-
-      var lastPeriodEnd;
-      var period;
-
-      if (!member) {
-        return 'Unable to retrieve member ' + participant;
-      }
-
-      switch (type) {
-        case SEASON_PASS.FULL:
-          lastPeriodEnd = END_OF_SEASON;
-          break;
-        default:
-          throw new Error('Unknow season pass');
-      }
-
-      period = {
-        startDate: member.monthlypass.lastPeriodEnd,
-        duration: null,
-        endDate: lastPeriodEnd
-      };
-
-      member.monthlypass.lastPeriodEnd = lastPeriodEnd;
-      member.monthlypass.periods.push(period);
-
-      logEvent('BUY_SEASON_PASS', [member], date);
-    }
-
-    function addTicket(method, url, data, headers, params) {
-      var seance = angular.fromJson(data);
-      var error = buySeance({_id:seance.member}, seance.number, seance.date);
-      if (error) {
-        return [404, error];
-      }
-      return [200];
-    }
-
-    function addSeasonPass(method, url, data, headers, params) {
-      var pass = angular.fromJson(data);
-      var error = buySeasonPass({_id: pass.member}, pass.type, pass.date);
-      if (error) {
-        return [404, error];
-      }
-      return [200];
+      logEvent('BUY_SEANCE', [entity], date);
     }
 
     function storeMocks() {
@@ -318,7 +222,7 @@
           firstName: 'Tyrion',
           lastName: 'Lannister',
           picture:'./assets/members/1.png',
-          seancesLeft: 0,
+          seanceLeft: 0,
           address: '13 avenue de broqueville 1200 Bruxelles',
           email: 'tlannister@got.com',
           phone: '+32 0474 55 63 30'
@@ -327,7 +231,7 @@
           firstName: 'John',
           lastName: 'Snow',
           picture:'./assets/members/2.png',
-          seancesLeft: 0,
+          seanceLeft: 0,
           address: '13 avenue de broqueville 1200 Bruxelles',
           email: 'jsnow@got.com',
           phone: '+32 0474 55 63 30'
@@ -336,7 +240,7 @@
           firstName: 'Sansa',
           lastName: 'Stark',
           picture:'./assets/members/3.png',
-          seancesLeft: 0,
+          seanceLeft: 0,
           address: '13 avenue de broqueville 1200 Bruxelles',
           email: 'sStrak@got.com',
           phone: '+32 0474 55 63 30'
@@ -345,7 +249,7 @@
           firstName: 'Joffrey',
           lastName: 'Baratheon',
           picture:'./assets/members/4.png',
-          seancesLeft: 0,
+          seanceLeft: 0,
           address: '13 avenue de broqueville 1200 Bruxelles',
           email: 'jbaratheon@got.com',
           phone: '+32 0474 55 63 30'
@@ -354,7 +258,7 @@
           firstName: 'Margaery',
           lastName: 'Tyrell',
           picture:'./assets/members/5.png',
-          seancesLeft: 0,
+          seanceLeft: 0,
           address: '13 avenue de broqueville 1200 Bruxelles',
           email: 'mtyrell@got.com',
           phone: '+32 0474 55 63 30'
@@ -363,7 +267,7 @@
           firstName: 'Khal',
           lastName: 'Drogo',
           picture:'./assets/members/6.png',
-          seancesLeft: 0,
+          seanceLeft: 0,
           address: '13 avenue de broqueville 1200 Bruxelles',
           email: 'kdrogo@got.com',
           phone: '+32 0474 55 63 30'
@@ -430,9 +334,6 @@
         session = createSession(session.date, session.participants, 6);
         store.sessions.push(session);
       });
-
-      //add full season pass to member 0
-      buySeasonPass(store.members[0], 'full');
     }
 
     function generateId() {

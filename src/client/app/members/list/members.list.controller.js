@@ -12,6 +12,7 @@
     vm.members = [];
     vm.search = '';
     vm.displayActions = true;
+
     vm.displaySelection =  displaySelection;
     vm.removeOnBackspace = removeOnBackspace;
     vm.getMails = getMails;

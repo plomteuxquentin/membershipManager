@@ -121,7 +121,7 @@ module.exports = function() {
     /**
      * Node settings
      */
-    nodeServer: server + 'app.js',
+    nodeServer: server + 'server.js',
     defaultPort: '8001'
   };
 
