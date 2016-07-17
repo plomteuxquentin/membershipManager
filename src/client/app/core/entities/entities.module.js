@@ -23,9 +23,6 @@
 
     httpBackend.whenGET('\/api\/members').passThrough();
 
-    httpBackend.whenPOST('/api/seances/ticket').respond(addTicket);
-    httpBackend.whenPOST('/api/seances/season-pass').respond(addSeasonPass);
-
     httpBackend.whenGET(pathWithId).respond(handleGet);
     httpBackend.whenGET(path).respond(handleQuery);
 

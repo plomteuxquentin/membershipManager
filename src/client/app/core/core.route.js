@@ -3,17 +3,20 @@
 
   angular
       .module('app.core')
+      .config(configRouter)
       .run(appRun);
+
+  configRouter.$inject = ['$urlRouterProvider'];
+
+  /* @ngInject */
+  function configRouter(urlRouterProvider) {
+    // when there is an empty route, redirect to /index
+    urlRouterProvider.when('/', '/home');
+  }
 
   /* @ngInject */
   function appRun(routerHelper) {
-    var otherwise = '/404';
-
-    routerHelper.configureStates(getStates(), '/home');
-  }
-
-  function getStates() {
-    return [
+    var state = [
       {
         state: '404',
         config: {
@@ -23,5 +26,9 @@
         }
       }
     ];
+    var otherwise = '/404';
+
+    routerHelper.configureStates(state, '/404');
   }
+
 })();
