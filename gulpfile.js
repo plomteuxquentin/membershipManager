@@ -93,7 +93,7 @@ gulp.task('images', ['clean-images'], function() {
   return gulp
     .src(config.images)
     .pipe($.imagemin({optimizationLevel: 4}))
-    .pipe(gulp.dest(config.build + 'images'));
+    .pipe(gulp.dest(config.build + 'assets'));
 });
 
 gulp.task('less-watcher', function() {
@@ -272,7 +272,7 @@ gulp.task('clean-fonts', function(done) {
  * @param  {Function} done - callback when complete
  */
 gulp.task('clean-images', function(done) {
-  clean(config.build + 'images/**/*.*', done);
+  clean(config.build + 'assets/**/*.*', done);
 });
 
 /**
