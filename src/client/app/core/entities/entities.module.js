@@ -21,6 +21,8 @@
 
     storeMocks();
 
+    httpBackend.whenGET('\/api\/members').passThrough();
+
     httpBackend.whenGET(pathWithId).respond(handleGet);
     httpBackend.whenGET(path).respond(handleQuery);
 
